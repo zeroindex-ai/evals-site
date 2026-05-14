@@ -2,11 +2,9 @@
 
 Static site at [`evals.zeroindex.ai`](https://evals.zeroindex.ai) hosting public eval-pack reports from ZeroIndex projects.
 
-## Why this exists
+## What this is
 
-Principle `02 / Truth` on [zeroindex.ai](https://zeroindex.ai) promises real evals. This site is where those evals are visible — one self-contained HTML report per project, regenerated whenever the project's eval CI runs.
-
-Powered by [`@zeroindex-ai/eval-pack`](https://github.com/zeroindex-ai/eval-pack).
+Public eval reports — one self-contained HTML file per project, regenerated whenever that project's eval CI runs. Each report is produced by [`@zeroindex-ai/eval-pack`](https://github.com/zeroindex-ai/eval-pack)'s `renderHtml` (no client JS, no external assets — viewable via `file://`, embeddable via iframe).
 
 ## Layout
 
