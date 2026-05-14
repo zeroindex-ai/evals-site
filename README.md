@@ -8,14 +8,29 @@ Principle `02 / Truth` on [zeroindex.ai](https://zeroindex.ai) promises real eva
 
 Powered by [`@zeroindex-ai/eval-pack`](https://github.com/zeroindex-ai/eval-pack).
 
-## URL layout
+## Layout
 
 ```
-evals.zeroindex.ai/                       → landing page
-evals.zeroindex.ai/<project>/latest.html  → latest run for that project
+evals-site/
+├── public/                       ← served as the site root
+│   ├── index.html
+│   ├── ask-zeroindex/
+│   │   └── latest.html
+│   └── dummy-agent/
+│       └── latest.html
+├── render.ts                     ← helper to refresh reports
+├── package.json                  ← dev tooling only; not deployed
+└── wrangler.jsonc
 ```
 
 Each `latest.html` is a standalone HTML file produced by `eval-pack`'s `renderHtml(report, opts)` — no client JS, no external assets, safe to view via `file://` or embed via iframe.
+
+## URL layout
+
+```
+evals.zeroindex.ai/                       → landing page (public/index.html)
+evals.zeroindex.ai/<project>/latest.html  → latest run for that project
+```
 
 ## Add or refresh a report
 
@@ -28,12 +43,12 @@ gh run download <run-id> --repo zeroindex-ai/<project> --name eval-results-<run-
 # 2. Render the JSON to HTML in place:
 pnpm render \
   --in artifacts/run-<timestamp>.json \
-  --out ./<project>/latest.html \
+  --out public/<project>/latest.html \
   --project <project> \
   --threshold 0.8
 
 # 3. Commit + push — Cloudflare auto-deploys.
-git add <project>/latest.html && git commit -m "Refresh <project> report" && git push
+git add public/<project>/latest.html && git commit -m "Refresh <project> report" && git push
 ```
 
 ## Deploy

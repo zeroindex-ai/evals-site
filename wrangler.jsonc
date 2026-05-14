@@ -1,12 +1,12 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "evals-zeroindex",
+  "name": "evals-site",
   "compatibility_date": "2026-05-14",
   "observability": {
     "enabled": true
   },
   "assets": {
-    "directory": "."
+    "directory": "./public"
   },
   "compatibility_flags": ["nodejs_compat"]
 }
