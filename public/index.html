@@ -6,13 +6,15 @@
   <title>Evals · ZeroIndex</title>
   <meta name="description" content="Public eval reports from ZeroIndex projects, powered by @zeroindex-ai/eval-pack.">
   <meta name="robots" content="index, follow">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='4 4 24 24' width='32' height='32'%3E%3Cpath d='M185 -110V830H465V715H310V5H465V-110Z' fill='%233f3f46' transform='translate(1 23.2) scale(0.02 -0.02)'/%3E%3Cpath d='M300 -10Q229 -10 177.0 17.0Q125 44 96.5 93.0Q68 142 68 208V522Q68 588 96.5 637.0Q125 686 177.0 713.0Q229 740 300 740Q371 740 423.0 713.0Q475 686 503.5 637.0Q532 588 532 522V208Q532 142 503.5 93.0Q475 44 423.0 17.0Q371 -10 300 -10ZM186 522V288L410 554Q401 590 372.0 611.0Q343 632 300 632Q247 632 216.5 602.0Q186 572 186 522ZM300 98Q352 98 383.0 128.0Q414 158 414 208V442L190 176Q199 140 228.0 119.0Q257 98 300 98Z' fill='%237c3aed' transform='translate(10 23.2) scale(0.02 -0.02)'/%3E%3Cpath d='M135 -110V5H290V715H135V830H415V-110Z' fill='%233f3f46' transform='translate(19 23.2) scale(0.02 -0.02)'/%3E%3C/svg%3E">
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     :root {
       --bg: #faf9f5;
-      --ink: #100d09;
-      --ink-soft: #57606a;
-      --line: #d0d7de;
+      --ink: #18181b;
+      --ink-soft: #52525b;
+      --muted-2: #71717a;
+      --line: #cfc9bd;
       --accent: #7c3aed;
       --card: #ffffff;
     }
@@ -25,22 +27,52 @@
       color: var(--ink);
       background: var(--bg);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
     header { margin-bottom: 40px; }
-    h1 {
-      font-size: 32px;
-      font-weight: 700;
-      margin: 0 0 8px;
-      letter-spacing: -0.02em;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
     }
-    h1 .bracket { color: var(--ink-soft); }
-    h1 .zero { color: var(--accent); }
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--ink);
+      transition: opacity 0.15s ease;
+    }
+    .brand-link:hover { opacity: 0.7; }
+    .brand-name {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+    .brand-sep {
+      color: var(--muted-2);
+      font-size: 20px;
+      font-weight: 300;
+      user-select: none;
+    }
+    .brand-section {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+    }
     .lede {
       color: var(--ink-soft);
       font-size: 16px;
       margin: 0;
+      max-width: 600px;
     }
-    .lede a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
+    .lede a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid currentColor;
+    }
     .lede a:hover { opacity: 0.7; }
     h2 {
       font-size: 13px;
@@ -97,21 +129,32 @@
 </head>
 <body>
   <header>
-    <h1><span class="bracket">[</span><span class="zero">0</span><span class="bracket">]</span> Evals</h1>
-    <p class="lede">Live evaluation reports from ZeroIndex projects, powered by <a href="https://github.com/zeroindex-ai/eval-pack"><code>@zeroindex-ai/eval-pack</code></a>.</p>
+    <div class="brand">
+      <a href="https://zeroindex.ai" class="brand-link" aria-label="ZeroIndex home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="4 0 24 32" width="27" height="36" aria-hidden="true">
+          <path d="M185 -110V830H465V715H310V5H465V-110Z" fill="#3f3f46" transform="translate(1 23.2) scale(0.02 -0.02)"/>
+          <path d="M300 -10Q229 -10 177.0 17.0Q125 44 96.5 93.0Q68 142 68 208V522Q68 588 96.5 637.0Q125 686 177.0 713.0Q229 740 300 740Q371 740 423.0 713.0Q475 686 503.5 637.0Q532 588 532 522V208Q532 142 503.5 93.0Q475 44 423.0 17.0Q371 -10 300 -10ZM186 522V288L410 554Q401 590 372.0 611.0Q343 632 300 632Q247 632 216.5 602.0Q186 572 186 522ZM300 98Q352 98 383.0 128.0Q414 158 414 208V442L190 176Q199 140 228.0 119.0Q257 98 300 98Z" fill="#7c3aed" transform="translate(10 23.2) scale(0.02 -0.02)"/>
+          <path d="M135 -110V5H290V715H135V830H415V-110Z" fill="#3f3f46" transform="translate(19 23.2) scale(0.02 -0.02)"/>
+        </svg>
+        <span class="brand-name">ZeroIndex</span>
+      </a>
+      <span class="brand-sep" aria-hidden="true">/</span>
+      <span class="brand-section">Evals</span>
+    </div>
+    <p class="lede">Live evaluation reports from ZeroIndex projects, powered by <a href="https://github.com/zeroindex-ai/eval-pack" target="_blank" rel="noopener"><code>@zeroindex-ai/eval-pack</code></a>.</p>
   </header>
 
   <main>
     <h2>Reports</h2>
     <ul class="reports">
       <li class="report">
-        <a href="/ask-zeroindex/latest">
+        <a href="/ask-zeroindex/latest" target="_blank" rel="noopener">
           <p class="report-title">ask-zeroindex</p>
           <p class="report-desc">RAG chat widget on zeroindex.ai. LLM-as-judge over 30 hand-labeled questions across positive, negative, adversarial, and multi-part categories.</p>
         </a>
       </li>
       <li class="report">
-        <a href="/dummy-agent/latest">
+        <a href="/dummy-agent/latest" target="_blank" rel="noopener">
           <p class="report-title">dummy-agent</p>
           <p class="report-desc">Offline FAQ-bot example demonstrating eval-pack's non-RAG, no-LLM mode. Pure programmatic checks, runs free in any CI.</p>
         </a>
@@ -120,7 +163,7 @@
   </main>
 
   <footer>
-    <p>Source: <a href="https://github.com/zeroindex-ai/evals-site">zeroindex-ai/evals-site</a> · <a href="https://zeroindex.ai">zeroindex.ai</a></p>
+    <p>Source: <a href="https://github.com/zeroindex-ai/evals-site" target="_blank" rel="noopener">zeroindex-ai/evals-site</a> · <a href="https://zeroindex.ai" target="_blank" rel="noopener">zeroindex.ai</a></p>
   </footer>
 </body>
 </html>
