@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Evals · ZeroIndex</title>
+  <meta name="description" content="Public eval reports from ZeroIndex projects, powered by @zeroindex-ai/eval-pack.">
+  <meta name="robots" content="index, follow">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    :root {
+      --bg: #faf9f5;
+      --ink: #100d09;
+      --ink-soft: #57606a;
+      --line: #d0d7de;
+      --accent: #7c3aed;
+      --card: #ffffff;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      margin: 0;
+      padding: 48px 24px;
+      max-width: 760px;
+      margin: 0 auto;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+    header { margin-bottom: 40px; }
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+    }
+    h1 .bracket { color: var(--ink-soft); }
+    h1 .zero { color: var(--accent); }
+    .lede {
+      color: var(--ink-soft);
+      font-size: 16px;
+      margin: 0;
+    }
+    .lede a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
+    .lede a:hover { opacity: 0.7; }
+    h2 {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+      margin: 32px 0 16px;
+    }
+    .reports { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+    .report {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px 20px;
+      transition: border-color 0.15s ease;
+    }
+    .report:hover { border-color: var(--accent); }
+    .report a {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+    .report-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0 0 4px;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    }
+    .report-desc {
+      font-size: 14px;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+      color: var(--ink-soft);
+    }
+    footer a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--line); }
+    footer a:hover { color: var(--accent); border-color: currentColor; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 13px;
+      background: rgba(124, 58, 237, 0.08);
+      color: var(--accent);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><span class="bracket">[</span><span class="zero">0</span><span class="bracket">]</span> Evals</h1>
+    <p class="lede">Live evaluation reports from ZeroIndex projects, powered by <a href="https://github.com/zeroindex-ai/eval-pack"><code>@zeroindex-ai/eval-pack</code></a>.</p>
+  </header>
+
+  <main>
+    <h2>Reports</h2>
+    <ul class="reports">
+      <li class="report">
+        <a href="/ask-zeroindex/latest.html">
+          <p class="report-title">ask-zeroindex</p>
+          <p class="report-desc">RAG chat widget on zeroindex.ai. LLM-as-judge over 30 hand-labeled questions across positive, negative, adversarial, and multi-part categories.</p>
+        </a>
+      </li>
+      <li class="report">
+        <a href="/dummy-agent/latest.html">
+          <p class="report-title">dummy-agent</p>
+          <p class="report-desc">Offline FAQ-bot example demonstrating eval-pack's non-RAG, no-LLM mode. Pure programmatic checks, runs free in any CI.</p>
+        </a>
+      </li>
+    </ul>
+  </main>
+
+  <footer>
+    <p>Source: <a href="https://github.com/zeroindex-ai/evals-site">zeroindex-ai/evals-site</a> · <a href="https://zeroindex.ai">zeroindex.ai</a></p>
+  </footer>
+</body>
+</html>

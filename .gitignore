@@ -1,0 +1,10 @@
+node_modules/
+.wrangler/
+.dev.vars
+.DS_Store
+
+# downloaded CI artifacts — keep them out of git; render to HTML then discard
+artifacts/
+
+# local scratchpad — not for public consumption
+NOTES.md

@@ -1,0 +1,17 @@
+{
+  "name": "evals-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Public eval reports from ZeroIndex projects, served at evals.zeroindex.ai",
+  "type": "module",
+  "scripts": {
+    "render": "tsx render.ts",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "@zeroindex-ai/eval-pack": "^0.1.1",
+    "tsx": "^4.21.0",
+    "wrangler": "^4.0.0"
+  }
+}
