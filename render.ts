@@ -1,334 +1,85 @@
-// Render a saved RunReport JSON into a single self-contained HTML file
-// wrapped in the zeroindex.ai site shell (sticky [0] header, cream theme,
-// Inter + JetBrains Mono, max-w-6xl container, footer in matching style).
+// Render a saved RunReport JSON into a single HTML file wrapped in the
+// zeroindex.ai site shell (sticky header, cream theme, system + JetBrains-Mono
+// typography, max-w-6xl container, footer in matching style).
 //
 // Usage: pnpm render --in <path.json> --out <path.html> --project <name> [--threshold <0..1>]
 //
 // To re-skin a previously rendered HTML file (no source JSON), pass --in <path.html>:
 // the file is detected as HTML and rewrapped through wrapWithSiteShell. This is the
 // migration path for reports whose source artifact has been lost.
+//
+// No Tailwind CDN, no Google Fonts, no client JS. The site CSS lives at
+// /styles/zeroindex.css and the brand mark at /brand.svg — both served as
+// static assets by Cloudflare. The rendered HTML is therefore not viewable
+// stand-alone via file:// (it relies on absolute paths under the site root)
+// but is fully self-contained behind evals.zeroindex.ai.
 
 import { readFile, writeFile } from 'node:fs/promises';
 import { renderHtml } from '@zeroindex-ai/eval-pack/report-html';
 import type { RunReport } from '@zeroindex-ai/eval-pack';
 
-type Args = { in?: string; out?: string; project?: string; threshold?: number };
+export type Args = {
+  in?: string;
+  out?: string;
+  project?: string;
+  threshold?: number;
+};
 
-function parseArgs(argv: string[]): Args {
+const VALUE_FLAGS = new Set(['--in', '--out', '--project', '--threshold']);
+
+export function parseArgs(argv: string[]): Args {
   const out: Args = {};
   for (let i = 0; i < argv.length; i++) {
-    const a = argv[i]!;
-    const v = argv[i + 1];
-    if (a === '--in') {
-      out.in = v;
-      i++;
-    } else if (a === '--out') {
-      out.out = v;
-      i++;
-    } else if (a === '--project') {
-      out.project = v;
-      i++;
-    } else if (a === '--threshold') {
-      out.threshold = Number(v);
-      i++;
-    } else {
+    const a = argv[i];
+    if (a === undefined) continue;
+    if (!VALUE_FLAGS.has(a)) {
       throw new Error(`Unknown flag: ${a}`);
     }
+    const v = argv[i + 1];
+    if (v === undefined || VALUE_FLAGS.has(v)) {
+      throw new Error(`Missing value for ${a}`);
+    }
+    if (a === '--in') {
+      out.in = v;
+    } else if (a === '--out') {
+      out.out = v;
+    } else if (a === '--project') {
+      out.project = v;
+    } else if (a === '--threshold') {
+      const n = Number(v);
+      if (!Number.isFinite(n)) {
+        throw new Error(`--threshold expects a number, got "${v}"`);
+      }
+      out.threshold = n;
+    }
+    i++;
   }
   return out;
 }
 
-function escapeHtml(s: string): string {
-  return s.replace(
-    /[&<>"']/g,
-    (c) =>
-      ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#39;',
-      })[c]!,
-  );
+export function escapeHtml(s: string): string {
+  return s.replace(/[&<>"']/g, (c) => {
+    switch (c) {
+      case '&': return '&amp;';
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '"': return '&quot;';
+      case "'": return '&#39;';
+      default:  return c;
+    }
+  });
 }
-
-const BRAND_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="4 0 24 32" width="27" height="36" aria-hidden="true">
-        <path d="M185 -110V830H465V715H310V5H465V-110Z" fill="#3f3f46" transform="translate(1 23.2) scale(0.02 -0.02)" />
-        <path d="M300 -10Q229 -10 177.0 17.0Q125 44 96.5 93.0Q68 142 68 208V522Q68 588 96.5 637.0Q125 686 177.0 713.0Q229 740 300 740Q371 740 423.0 713.0Q475 686 503.5 637.0Q532 588 532 522V208Q532 142 503.5 93.0Q475 44 423.0 17.0Q371 -10 300 -10ZM186 522V288L410 554Q401 590 372.0 611.0Q343 632 300 632Q247 632 216.5 602.0Q186 572 186 522ZM300 98Q352 98 383.0 128.0Q414 158 414 208V442L190 176Q199 140 228.0 119.0Q257 98 300 98Z" fill="#7c3aed" transform="translate(10 23.2) scale(0.02 -0.02)" />
-        <path d="M135 -110V5H290V715H135V830H415V-110Z" fill="#3f3f46" transform="translate(19 23.2) scale(0.02 -0.02)" />
-      </svg>`;
-
-const SHELL_AND_REPORT_STYLE = `
-*, *::before, *::after { box-sizing: border-box; }
-
-:root {
-  --bg: #faf9f5;
-  --bg-soft: #f4f3ef;
-  --ink: #18181b;
-  --muted: #52525b;
-  --muted-2: #71717a;
-  --line: #cfc9bd;
-  --line-strong: #9c958a;
-  --accent-1: #7c3aed;
-  --accent-go: #16a34a;
-  --semantic-fail: #dc2626;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-feature-settings: 'ss01', 'cv11';
-  background: var(--bg);
-  color: var(--ink);
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
-.muted { color: var(--muted); }
-.line { border-color: var(--line); }
-
-.label {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-/* sticky header — border fades in on scroll */
-.site-header {
-  background: var(--bg);
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
-}
-.site-header.scrolled { border-bottom-color: var(--line); }
-
-/* Tier B header — utility surfaces; see zeroindexai/STYLE_GUIDE.md §6. */
-.brand-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-  color: var(--ink);
-  transition: opacity 0.15s ease;
-}
-.brand-link:hover { opacity: 0.8; }
-.brand-name {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-}
-
-.subtle { color: inherit; text-decoration: none; transition: color 0.15s ease; }
-.subtle:hover { color: var(--ink); }
-
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  padding: 8px 12px;
-  background: var(--ink);
-  color: var(--bg);
-  z-index: 100;
-}
-.skip-link:focus { left: 12px; top: 12px; }
-
-/* === report shell — replaces eval-pack's GitHub-light look with ZeroIndex cream === */
-
-.report-shell {
-  padding-top: 40px;
-  padding-bottom: 80px;
-}
-
-.report-shell > .label {
-  margin-bottom: 16px;
-}
-
-.report-shell header {
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--line);
-  margin-bottom: 8px;
-}
-
-.report-shell h1 {
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin: 0 0 12px;
-  line-height: 1.2;
-}
-
-.report-shell h2 {
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 8px;
-  margin: 40px 0 16px;
-}
-
-.report-shell h3 {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 16px 0 12px;
-}
-
-.report-shell .meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 12px;
-}
-.report-shell .meta span { white-space: nowrap; }
-
-.report-shell .pass-rate {
-  font-size: 40px;
-  font-weight: 700;
-  margin-top: 16px;
-  letter-spacing: -0.02em;
-}
-.report-shell .pass-rate.ok { color: var(--accent-go); }
-.report-shell .pass-rate.bad { color: var(--semantic-fail); }
-.report-shell .pass-rate small {
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--muted);
-  margin-left: 8px;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-}
-
-.report-shell table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 12px 0;
-  font-size: 14px;
-}
-.report-shell th, .report-shell td {
-  padding: 10px 14px;
-  text-align: left;
-  border-bottom: 1px solid var(--line);
-}
-.report-shell th {
-  background: var(--bg-soft);
-  font-weight: 500;
-  font-size: 11px;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-}
-.report-shell td.num {
-  font-variant-numeric: tabular-nums;
-  text-align: right;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-}
-
-.report-shell details {
-  margin: 8px 0;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #ffffff;
-  overflow: hidden;
-}
-.report-shell summary {
-  padding: 14px 18px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
-  user-select: none;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-}
-.report-shell summary:hover { background: var(--bg-soft); }
-.report-shell summary.fail { color: var(--semantic-fail); }
-.report-shell summary.pass { color: var(--accent-go); }
-
-.report-shell .body {
-  padding: 14px 18px 18px;
-  border-top: 1px solid var(--line);
-  background: var(--bg);
-}
-.report-shell .field {
-  margin: 12px 0;
-  font-size: 14px;
-}
-.report-shell .field-label {
-  display: inline-block;
-  min-width: 132px;
-  color: var(--muted);
-  font-weight: 500;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  vertical-align: top;
-}
-.report-shell .text {
-  white-space: pre-wrap;
-  background: #ffffff;
-  padding: 12px 14px;
-  border-radius: 6px;
-  border: 1px solid var(--line);
-  font-size: 13px;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  margin-top: 8px;
-  overflow-x: auto;
-}
-
-.report-shell .tag {
-  display: inline-block;
-  padding: 2px 10px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 500;
-  margin-right: 6px;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-}
-.report-shell .tag.ok { background: #d1fae5; color: #065f46; }
-.report-shell .tag.fail { background: #fee2e2; color: #991b1b; }
-.report-shell .tag.skip { background: #fef3c7; color: #92400e; }
-.report-shell .tag.muted { background: var(--bg-soft); color: var(--muted); }
-
-.report-shell code {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-size: 12px;
-  background: rgba(124, 58, 237, 0.08);
-  color: var(--accent-1);
-  padding: 1px 6px;
-  border-radius: 4px;
-}
-`;
-
-const STICKY_HEADER_SCRIPT = `
-    (function () {
-      const hdr = document.getElementById('siteHeader');
-      if (!hdr) return;
-      function onScroll() {
-        hdr.classList.toggle('scrolled', window.scrollY > 4);
-      }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    })();
-`;
 
 /**
  * Wrap eval-pack's renderHtml() output in the zeroindex.ai site shell.
  *
- * Strips eval-pack's <style> and inner <footer> (the site footer already
- * credits eval-pack), keeps the report body, and injects the cream theme,
- * sticky header, and ZeroIndex-styled site footer.
+ * Strips eval-pack's inner <footer> (the site footer credits eval-pack
+ * already), keeps the report body, and injects the cream theme, sticky
+ * header, and ZeroIndex-styled site footer.
+ *
+ * Trust boundary: `bodyContent` comes from @zeroindex-ai/eval-pack (a
+ * first-party package). Only `projectName` is HTML-escaped; if a third-
+ * party report source is ever wired in, escape the body too.
  *
  * **Idempotent.** If the input is already a wrapped page (detected via
  * `<main class="report-shell">`), the inner report content is extracted
@@ -346,25 +97,26 @@ export function wrapWithSiteShell(innerHtml: string, projectName: string): strin
 
   let bodyContent: string;
   if (shellOpens.length > 0) {
-    const last = shellOpens[shellOpens.length - 1]!;
-    const start = last.index! + last[0].length;
-    const end = innerHtml.indexOf('</main>', start);
-    if (end > start) {
-      bodyContent = innerHtml.slice(start, end).trim();
-      // Strip any leading "Eval Report" kicker the previous wrap added.
-      bodyContent = bodyContent.replace(
-        /^<div\s+class="label"[^>]*>\s*Eval Report\s*<\/div>\s*/i,
-        '',
-      );
+    const last = shellOpens[shellOpens.length - 1];
+    if (last && last.index !== undefined) {
+      const start = last.index + last[0].length;
+      const end = innerHtml.indexOf('</main>', start);
+      if (end > start) {
+        bodyContent = innerHtml.slice(start, end).trim();
+        // Strip any leading "Eval Report" kicker the previous wrap added.
+        bodyContent = bodyContent.replace(
+          /^<div\s+class="label"[^>]*>\s*Eval Report\s*<\/div>\s*/i,
+          '',
+        );
+      } else {
+        bodyContent = extractBody(innerHtml);
+      }
     } else {
-      // Malformed — fall back to body extraction.
-      const bodyMatch = innerHtml.match(/<body[^>]*>([\s\S]*?)<\/body>/);
-      bodyContent = bodyMatch ? bodyMatch[1]!.trim() : innerHtml;
+      bodyContent = extractBody(innerHtml);
     }
   } else {
     // First-time wrap of raw eval-pack output.
-    const bodyMatch = innerHtml.match(/<body[^>]*>([\s\S]*?)<\/body>/);
-    bodyContent = bodyMatch ? bodyMatch[1]!.trim() : innerHtml;
+    bodyContent = extractBody(innerHtml);
   }
 
   // Drop eval-pack's inner <footer> — site footer credits eval-pack already.
@@ -387,24 +139,18 @@ export function wrapWithSiteShell(innerHtml: string, projectName: string): strin
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
   <link rel="apple-touch-icon" href="/favicon-180x180.png" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <style>${SHELL_AND_REPORT_STYLE}</style>
+  <link rel="stylesheet" href="/styles/zeroindex.css" />
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
 
-  <header id="siteHeader" class="site-header sticky top-0 z-30">
+  <header class="site-header">
     <div class="max-w-6xl mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
       <a href="https://zeroindex.ai" class="brand-link" aria-label="ZeroIndex home">
-        ${BRAND_SVG}
+        <img src="/brand.svg" alt="" class="brand-mark" width="27" height="36" />
         <span class="brand-name">ZeroIndex</span>
       </a>
-      <a href="/" class="text-sm muted hover:opacity-80 transition-opacity">
+      <a href="/" class="text-sm muted transition-opacity hover:opacity-80">
         &larr; All evals
       </a>
     </div>
@@ -427,51 +173,61 @@ export function wrapWithSiteShell(innerHtml: string, projectName: string): strin
       </div>
     </footer>
   </div>
-
-  <script>${STICKY_HEADER_SCRIPT}</script>
 </body>
 </html>`;
 }
 
+function extractBody(html: string): string {
+  const m = html.match(/<body[^>]*>([\s\S]*?)<\/body>/);
+  return m && m[1] !== undefined ? m[1].trim() : html;
+}
+
 async function main(): Promise<void> {
   const args = parseArgs(process.argv.slice(2));
-  if (!args.in || !args.out || !args.project) {
+  const { in: input, out: output, project, threshold } = args;
+  if (!input || !output || !project) {
     console.error(
       'Usage: pnpm render --in <path.json|path.html> --out <path.html> --project <name> [--threshold <0..1>]',
     );
     process.exit(2);
+    return;
   }
 
-  const raw = await readFile(args.in, 'utf-8');
+  const raw = await readFile(input, 'utf-8');
+  const isHtml = input.endsWith('.html');
 
   let inner: string;
-  if (args.in.endsWith('.html')) {
+  let report: RunReport | undefined;
+
+  if (isHtml) {
     // Migration path: a previously generated HTML file gets re-wrapped through the new shell.
     inner = raw;
   } else {
-    const report = JSON.parse(raw) as RunReport;
+    report = JSON.parse(raw) as RunReport;
     inner = renderHtml(report, {
-      projectName: args.project,
-      ...(args.threshold !== undefined ? { threshold: args.threshold } : {}),
+      projectName: project,
+      ...(threshold !== undefined ? { threshold } : {}),
     });
   }
 
-  const html = wrapWithSiteShell(inner, args.project);
-  await writeFile(args.out, html);
+  const html = wrapWithSiteShell(inner, project);
+  await writeFile(output, html);
 
-  if (args.in.endsWith('.html')) {
-    console.log(`Re-wrapped ${args.out} with ZeroIndex site shell`);
-  } else {
-    const report = JSON.parse(raw) as RunReport;
+  if (report) {
     const passed = report.results.filter((r) => r.pass).length;
     const total = report.results.length;
-    console.log(
-      `Wrote ${args.out} — ${passed}/${total} passed (${total > 0 ? Math.round((passed / total) * 100) : 0}%)`,
-    );
+    const pct = total > 0 ? Math.round((passed / total) * 100) : 0;
+    console.log(`Wrote ${output} — ${passed}/${total} passed (${pct}%)`);
+  } else {
+    console.log(`Re-wrapped ${output} with ZeroIndex site shell`);
   }
 }
 
-main().catch((err: unknown) => {
-  console.error(err instanceof Error ? err.message : String(err));
-  process.exit(1);
-});
+// Only run main() when executed directly, not when imported by tests.
+const entry = process.argv[1];
+if (entry && (entry.endsWith('/render.ts') || entry.endsWith('\\render.ts'))) {
+  main().catch((err: unknown) => {
+    console.error(err instanceof Error ? err.message : String(err));
+    process.exit(1);
+  });
+}

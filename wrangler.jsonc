@@ -6,7 +6,13 @@
     "enabled": true
   },
   "assets": {
-    "directory": "./public"
-  },
-  "compatibility_flags": ["nodejs_compat"]
+    "directory": "./public",
+    // Landing page links to clean URLs like /ask-zeroindex/latest — Cloudflare
+    // resolves these to /ask-zeroindex/latest.html and 301s to the trailing
+    // slash so the canonical form stays a single shape.
+    "html_handling": "auto-trailing-slash",
+    // Static site — fall back to /404.html on any unknown path rather than
+    // returning a bare Cloudflare error page.
+    "not_found_handling": "404-page"
+  }
 }

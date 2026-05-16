@@ -1,0 +1,375 @@
+/*
+ * zeroindex.css — single source of truth for evals.zeroindex.ai
+ *
+ * Used by both public/index.html (landing) and the per-project rendered
+ * reports emitted by render.ts (wrapWithSiteShell). Includes:
+ *   - cream theme tokens (--bg, --ink, --accent-1, ...)
+ *   - typography defaults (system + JetBrains-Mono accent if installed)
+ *   - report-shell rules that re-skin @zeroindex-ai/eval-pack output
+ *   - a small set of hand-written utility classes that replace the few
+ *     Tailwind classes the markup uses (max-w-6xl, mx-auto, px-6, ...).
+ *
+ * No Tailwind, no Google Fonts, no client JS — the file is safe to
+ * view via file:// or embed via iframe. See README.md.
+ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --bg:           #faf9f5;
+  --bg-soft:      #f4f3ef;
+  --ink:          #18181b;
+  --muted:        #52525b;
+  --muted-2:      #71717a;
+  --line:         #cfc9bd;
+  --line-strong:  #9c958a;
+  --accent-1:     #7c3aed;
+  --accent-go:    #16a34a;
+  --semantic-fail:#dc2626;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-feature-settings: 'ss01', 'cv11';
+  background: var(--bg);
+  color: var(--ink);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mono { font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace; }
+.muted { color: var(--muted); }
+.line { border-color: var(--line); }
+
+.label {
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.num {
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  color: var(--muted-2);
+}
+
+.grad-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--line-strong) 50%, transparent 100%);
+  opacity: 0.6;
+}
+
+/* sticky header — static thin rule; previously a JS-driven scroll fade. */
+.site-header {
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Tier B header — utility surfaces; matches Tier A in everything but size.
+   See zeroindexai/STYLE_GUIDE.md §6 "Header tiers across surfaces". */
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: opacity 0.15s ease;
+}
+.brand-link:hover { opacity: 0.8; }
+.brand-name {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.brand-mark {
+  display: block;
+  width: 27px;
+  height: 36px;
+}
+
+.subtle { color: inherit; text-decoration: none; transition: color 0.15s ease; }
+.subtle:hover { color: var(--ink); }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 8px 12px;
+  background: var(--ink);
+  color: var(--bg);
+  z-index: 100;
+}
+.skip-link:focus { left: 12px; top: 12px; }
+
+code.chip {
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  background: rgba(124, 58, 237, 0.08);
+  color: var(--accent-1);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.inline-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+  transition: opacity 0.15s ease;
+}
+.inline-link:hover { opacity: 0.8; }
+
+/* report list-card — landing page only. */
+.report-card {
+  display: block;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 22px 24px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+.report-card:hover {
+  border-color: var(--line-strong);
+  box-shadow: 0 6px 22px -16px rgba(124, 58, 237, 0.45);
+  transform: translateY(-1px);
+}
+.report-card .report-title {
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent-1);
+  margin: 0;
+}
+
+/* === report shell — replaces eval-pack's GitHub-light look with ZeroIndex cream === */
+
+.report-shell {
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+.report-shell > .label {
+  margin-bottom: 16px;
+}
+
+.report-shell header {
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 8px;
+}
+
+.report-shell h1 {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 12px;
+  line-height: 1.2;
+}
+
+.report-shell h2 {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 8px;
+  margin: 40px 0 16px;
+}
+
+.report-shell h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 16px 0 12px;
+}
+
+.report-shell .meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 12px;
+}
+.report-shell .meta span { white-space: nowrap; }
+
+.report-shell .pass-rate {
+  font-size: 40px;
+  font-weight: 700;
+  margin-top: 16px;
+  letter-spacing: -0.02em;
+}
+.report-shell .pass-rate.ok { color: var(--accent-go); }
+.report-shell .pass-rate.bad { color: var(--semantic-fail); }
+.report-shell .pass-rate small {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 8px;
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.report-shell table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 14px;
+}
+.report-shell th, .report-shell td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+.report-shell th {
+  background: var(--bg-soft);
+  font-weight: 500;
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+}
+.report-shell td.num {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.report-shell details {
+  margin: 8px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  overflow: hidden;
+}
+.report-shell summary {
+  padding: 14px 18px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  user-select: none;
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+}
+.report-shell summary:hover { background: var(--bg-soft); }
+.report-shell summary.fail { color: var(--semantic-fail); }
+.report-shell summary.pass { color: var(--accent-go); }
+
+.report-shell .body {
+  padding: 14px 18px 18px;
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+}
+.report-shell .field {
+  margin: 12px 0;
+  font-size: 14px;
+}
+.report-shell .field-label {
+  display: inline-block;
+  min-width: 132px;
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  vertical-align: top;
+}
+.report-shell .text {
+  white-space: pre-wrap;
+  background: #ffffff;
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  font-size: 13px;
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  margin-top: 8px;
+  overflow-x: auto;
+}
+
+.report-shell .tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  margin-right: 6px;
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+}
+.report-shell .tag.ok   { background: #d1fae5; color: #065f46; }
+.report-shell .tag.fail { background: #fee2e2; color: #991b1b; }
+.report-shell .tag.skip { background: #fef3c7; color: #92400e; }
+.report-shell .tag.muted { background: var(--bg-soft); color: var(--muted); }
+
+.report-shell code {
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  background: rgba(124, 58, 237, 0.08);
+  color: var(--accent-1);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+/* ===== layout utilities (replacing the handful of Tailwind classes the
+   markup uses; hand-written so we don't ship a runtime CDN compiler). ===== */
+
+.max-w-6xl { max-width: 72rem; }
+.mx-auto   { margin-left: auto; margin-right: auto; }
+.px-6      { padding-left: 1.5rem; padding-right: 1.5rem; }
+.py-5      { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+.py-10     { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+.pt-10     { padding-top: 2.5rem; }
+.pb-8      { padding-bottom: 2rem; }
+.pb-24     { padding-bottom: 6rem; }
+.mt-2      { margin-top: 0.5rem; }
+.mt-4      { margin-top: 1rem; }
+.mb-2      { margin-bottom: 0.5rem; }
+.mb-3      { margin-bottom: 0.75rem; }
+.mb-6      { margin-bottom: 1.5rem; }
+.gap-3     { gap: 0.75rem; }
+.gap-6     { gap: 1.5rem; }
+
+.flex            { display: flex; }
+.flex-col        { flex-direction: column; }
+.grid            { display: grid; }
+.items-center    { align-items: center; }
+.justify-between { justify-content: space-between; }
+
+.border-t { border-top-width: 1px; border-top-style: solid; }
+
+.text-xs   { font-size: 0.75rem;  line-height: 1rem; }
+.text-sm   { font-size: 0.875rem; line-height: 1.25rem; }
+.text-base { font-size: 1rem;     line-height: 1.5rem; }
+.text-3xl  { font-size: 1.875rem; line-height: 2.25rem; }
+.text-\[15px\] { font-size: 15px; }
+
+.font-bold       { font-weight: 700; }
+.tracking-tight  { letter-spacing: -0.025em; }
+.leading-relaxed { line-height: 1.625; }
+
+.transition-opacity { transition-property: opacity; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+.hover\:opacity-80:hover { opacity: 0.8; }
+
+@media (min-width: 768px) {
+  .md\:px-10            { padding-left: 2.5rem;  padding-right: 2.5rem; }
+  .md\:text-4xl         { font-size: 2.25rem;    line-height: 2.5rem; }
+  .md\:flex-row         { flex-direction: row; }
+  .md\:items-center     { align-items: center; }
+  .md\:justify-between  { justify-content: space-between; }
+}
