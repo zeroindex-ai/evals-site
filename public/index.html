@@ -1,155 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Evals · ZeroIndex</title>
-  <meta name="description" content="Public eval reports from ZeroIndex projects, powered by @zeroindex-ai/eval-pack.">
-  <meta name="robots" content="index, follow">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='4 4 24 24' width='32' height='32'%3E%3Cpath d='M185 -110V830H465V715H310V5H465V-110Z' fill='%233f3f46' transform='translate(1 23.2) scale(0.02 -0.02)'/%3E%3Cpath d='M300 -10Q229 -10 177.0 17.0Q125 44 96.5 93.0Q68 142 68 208V522Q68 588 96.5 637.0Q125 686 177.0 713.0Q229 740 300 740Q371 740 423.0 713.0Q475 686 503.5 637.0Q532 588 532 522V208Q532 142 503.5 93.0Q475 44 423.0 17.0Q371 -10 300 -10ZM186 522V288L410 554Q401 590 372.0 611.0Q343 632 300 632Q247 632 216.5 602.0Q186 572 186 522ZM300 98Q352 98 383.0 128.0Q414 158 414 208V442L190 176Q199 140 228.0 119.0Q257 98 300 98Z' fill='%237c3aed' transform='translate(10 23.2) scale(0.02 -0.02)'/%3E%3Cpath d='M135 -110V5H290V715H135V830H415V-110Z' fill='%233f3f46' transform='translate(19 23.2) scale(0.02 -0.02)'/%3E%3C/svg%3E">
+  <meta name="description" content="Public eval reports from ZeroIndex projects, powered by @zeroindex-ai/eval-pack." />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='4 4 24 24' width='32' height='32'%3E%3Cpath d='M185 -110V830H465V715H310V5H465V-110Z' fill='%233f3f46' transform='translate(1 23.2) scale(0.02 -0.02)'/%3E%3Cpath d='M300 -10Q229 -10 177.0 17.0Q125 44 96.5 93.0Q68 142 68 208V522Q68 588 96.5 637.0Q125 686 177.0 713.0Q229 740 300 740Q371 740 423.0 713.0Q475 686 503.5 637.0Q532 588 532 522V208Q532 142 503.5 93.0Q475 44 423.0 17.0Q371 -10 300 -10ZM186 522V288L410 554Q401 590 372.0 611.0Q343 632 300 632Q247 632 216.5 602.0Q186 572 186 522ZM300 98Q352 98 383.0 128.0Q414 158 414 208V442L190 176Q199 140 228.0 119.0Q257 98 300 98Z' fill='%237c3aed' transform='translate(10 23.2) scale(0.02 -0.02)'/%3E%3Cpath d='M135 -110V5H290V715H135V830H415V-110Z' fill='%233f3f46' transform='translate(19 23.2) scale(0.02 -0.02)'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; }
+
     :root {
-      --bg: #faf9f5;
-      --ink: #18181b;
-      --ink-soft: #52525b;
-      --muted-2: #71717a;
-      --line: #cfc9bd;
-      --accent: #7c3aed;
-      --card: #ffffff;
+      --bg:           #faf9f5;
+      --bg-soft:      #f4f3ef;
+      --ink:          #18181b;
+      --muted:        #52525b;
+      --muted-2:      #71717a;
+      --line:         #cfc9bd;
+      --line-strong:  #9c958a;
+      --accent-1:     #7c3aed;
+      --accent-2:     #4f46e5;
+      --accent-3:     #c026d3;
+      --accent-go:    #16a34a;
     }
+
+    html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      margin: 0;
-      padding: 48px 24px;
-      max-width: 760px;
-      margin: 0 auto;
-      color: var(--ink);
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-feature-settings: 'ss01', 'cv11';
       background: var(--bg);
-      line-height: 1.6;
+      color: var(--ink);
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-    header { margin-bottom: 40px; }
+
+    .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+    .muted { color: var(--muted); }
+    .muted-2 { color: var(--muted-2); }
+    .line { border-color: var(--line); }
+
+    .label {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .num {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--muted-2);
+    }
+
+    .grad-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--line-strong) 50%, transparent 100%);
+      opacity: 0.6;
+    }
+
+    /* sticky header — border fades in once the user starts scrolling */
+    .site-header {
+      background: var(--bg);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+    .site-header.scrolled {
+      border-bottom-color: var(--line);
+    }
+
+    /* Tier B header — utility surfaces; matches Tier A in everything but size.
+       See zeroindexai/STYLE_GUIDE.md §6 "Header tiers across surfaces". */
     .brand-link {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       text-decoration: none;
       color: var(--ink);
-      margin-bottom: 28px;
       transition: opacity 0.15s ease;
     }
-    .brand-link:hover { opacity: 0.7; }
+    .brand-link:hover { opacity: 0.8; }
     .brand-name {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 700;
       letter-spacing: -0.025em;
     }
-    .page-title {
-      font-size: 40px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin: 0 0 16px;
-      color: var(--ink);
-    }
-    .lede {
-      color: var(--ink-soft);
-      font-size: 16px;
-      margin: 0;
-    }
-    .lede a {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid currentColor;
-    }
-    .lede a:hover { opacity: 0.7; }
-    h2 {
-      font-size: 13px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--ink-soft);
-      margin: 32px 0 16px;
-    }
-    .reports { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-    .report {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 16px 20px;
-      transition: border-color 0.15s ease;
-    }
-    .report:hover { border-color: var(--accent); }
-    .report a {
+
+    /* report list-card — borrows the main-site .card hover treatment */
+    .report-card {
       display: block;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 22px 24px;
       text-decoration: none;
       color: inherit;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
     }
-    .report-title {
+    .report-card:hover {
+      border-color: var(--line-strong);
+      box-shadow: 0 6px 22px -16px rgba(124, 58, 237, 0.45);
+      transform: translateY(-1px);
+    }
+    .report-card .report-title {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
       font-size: 16px;
       font-weight: 600;
-      color: var(--accent);
-      margin: 0 0 4px;
-      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-    }
-    .report-desc {
-      font-size: 14px;
-      color: var(--ink-soft);
+      color: var(--accent-1);
       margin: 0;
     }
-    footer {
-      margin-top: 64px;
-      padding-top: 24px;
-      border-top: 1px solid var(--line);
-      font-size: 13px;
-      color: var(--ink-soft);
-    }
-    footer a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--line); }
-    footer a:hover { color: var(--accent); border-color: currentColor; }
-    code {
-      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+    .subtle { color: inherit; text-decoration: none; transition: color 0.15s ease; }
+    .subtle:hover { color: var(--ink); }
+
+    code.chip {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
       font-size: 13px;
       background: rgba(124, 58, 237, 0.08);
-      color: var(--accent);
+      color: var(--accent-1);
       padding: 1px 6px;
       border-radius: 4px;
     }
+
+    .inline-link {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: var(--line-strong);
+      text-underline-offset: 3px;
+      transition: opacity 0.15s ease;
+    }
+    .inline-link:hover { opacity: 0.8; }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      padding: 8px 12px;
+      background: var(--ink);
+      color: var(--bg);
+      z-index: 100;
+    }
+    .skip-link:focus { left: 12px; top: 12px; }
   </style>
 </head>
 <body>
-  <header>
-    <a href="https://zeroindex.ai" class="brand-link" aria-label="ZeroIndex home">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="4 0 24 32" width="27" height="36" aria-hidden="true">
-        <path d="M185 -110V830H465V715H310V5H465V-110Z" fill="#3f3f46" transform="translate(1 23.2) scale(0.02 -0.02)"/>
-        <path d="M300 -10Q229 -10 177.0 17.0Q125 44 96.5 93.0Q68 142 68 208V522Q68 588 96.5 637.0Q125 686 177.0 713.0Q229 740 300 740Q371 740 423.0 713.0Q475 686 503.5 637.0Q532 588 532 522V208Q532 142 503.5 93.0Q475 44 423.0 17.0Q371 -10 300 -10ZM186 522V288L410 554Q401 590 372.0 611.0Q343 632 300 632Q247 632 216.5 602.0Q186 572 186 522ZM300 98Q352 98 383.0 128.0Q414 158 414 208V442L190 176Q199 140 228.0 119.0Q257 98 300 98Z" fill="#7c3aed" transform="translate(10 23.2) scale(0.02 -0.02)"/>
-        <path d="M135 -110V5H290V715H135V830H415V-110Z" fill="#3f3f46" transform="translate(19 23.2) scale(0.02 -0.02)"/>
-      </svg>
-      <span class="brand-name">ZeroIndex</span>
-    </a>
-    <h1 class="page-title">Evals</h1>
-    <p class="lede">Live evaluation reports from ZeroIndex projects, powered by <a href="https://github.com/zeroindex-ai/eval-pack" target="_blank" rel="noopener"><code>@zeroindex-ai/eval-pack</code></a>.</p>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <header id="siteHeader" class="site-header sticky top-0 z-30">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
+      <a href="https://zeroindex.ai" class="brand-link" aria-label="ZeroIndex home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="4 0 24 32" width="27" height="36" aria-hidden="true">
+          <path d="M185 -110V830H465V715H310V5H465V-110Z" fill="#3f3f46" transform="translate(1 23.2) scale(0.02 -0.02)" />
+          <path d="M300 -10Q229 -10 177.0 17.0Q125 44 96.5 93.0Q68 142 68 208V522Q68 588 96.5 637.0Q125 686 177.0 713.0Q229 740 300 740Q371 740 423.0 713.0Q475 686 503.5 637.0Q532 588 532 522V208Q532 142 503.5 93.0Q475 44 423.0 17.0Q371 -10 300 -10ZM186 522V288L410 554Q401 590 372.0 611.0Q343 632 300 632Q247 632 216.5 602.0Q186 572 186 522ZM300 98Q352 98 383.0 128.0Q414 158 414 208V442L190 176Q199 140 228.0 119.0Q257 98 300 98Z" fill="#7c3aed" transform="translate(10 23.2) scale(0.02 -0.02)" />
+          <path d="M135 -110V5H290V715H135V830H415V-110Z" fill="#3f3f46" transform="translate(19 23.2) scale(0.02 -0.02)" />
+        </svg>
+        <span class="brand-name">ZeroIndex</span>
+      </a>
+      <a href="https://zeroindex.ai" class="text-sm muted hover:opacity-80 transition-opacity">
+        &larr; zeroindex.ai
+      </a>
+    </div>
   </header>
 
-  <main>
-    <h2>Reports</h2>
-    <ul class="reports">
-      <li class="report">
-        <a href="/ask-zeroindex/latest" target="_blank" rel="noopener">
-          <p class="report-title">ask-zeroindex</p>
-          <p class="report-desc">RAG chat widget on zeroindex.ai. LLM-as-judge over 30 hand-labeled questions across positive, negative, adversarial, and multi-part categories.</p>
-        </a>
-      </li>
-      <li class="report">
-        <a href="/dummy-agent/latest" target="_blank" rel="noopener">
-          <p class="report-title">dummy-agent</p>
-          <p class="report-desc">Offline FAQ-bot example demonstrating eval-pack's non-RAG, no-LLM mode. Pure programmatic checks, runs free in any CI.</p>
-        </a>
-      </li>
-    </ul>
-  </main>
+  <div class="max-w-6xl mx-auto px-6 md:px-10">
+    <main id="main-content">
+      <!-- intro -->
+      <section class="pt-10 pb-8">
+        <div class="label mb-3">Evals</div>
+        <h1 class="text-3xl md:text-4xl font-bold tracking-tight">
+          Live evaluation reports.
+        </h1>
+        <p class="mt-4 muted text-base leading-relaxed">
+          Public reports from ZeroIndex projects, generated by <a href="https://github.com/zeroindex-ai/eval-pack" class="inline-link"><code class="chip">@zeroindex-ai/eval-pack</code></a>. The evidence behind <em>&ldquo;tell the truth about AI.&rdquo;</em>
+        </p>
+      </section>
 
-  <footer>
-    <p>Source: <a href="https://github.com/zeroindex-ai/evals-site" target="_blank" rel="noopener">zeroindex-ai/evals-site</a> · <a href="https://zeroindex.ai" target="_blank" rel="noopener">zeroindex.ai</a></p>
-  </footer>
+      <div class="grad-divider"></div>
+
+      <!-- reports -->
+      <section class="pt-10 pb-24">
+        <div class="label mb-6">Reports</div>
+
+        <ul class="grid gap-3">
+          <li>
+            <a href="/ask-zeroindex/latest" class="report-card">
+              <div class="num text-xs mb-2">00 / ask-zeroindex</div>
+              <p class="report-title">RAG chat widget on zeroindex.ai</p>
+              <p class="muted mt-2 text-[15px] leading-relaxed">
+                LLM-as-judge over 30 hand-labeled questions across positive, negative, adversarial, and multi-part categories.
+              </p>
+            </a>
+          </li>
+          <li>
+            <a href="/dummy-agent/latest" class="report-card">
+              <div class="num text-xs mb-2">01 / dummy-agent</div>
+              <p class="report-title">Offline FAQ-bot example</p>
+              <p class="muted mt-2 text-[15px] leading-relaxed">
+                Demonstrates eval-pack&rsquo;s non-RAG, no-LLM mode. Pure programmatic checks, runs free in any CI.
+              </p>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="border-t line py-10 text-sm">
+      <div class="muted flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
+        <div class="mono">&copy; 2026 ZeroIndex LLC &middot; Pennsylvania</div>
+        <div class="flex items-center gap-6">
+          <a class="subtle" href="https://github.com/zeroindex-ai/evals-site">Source</a>
+          <a class="subtle" href="https://github.com/zeroindex-ai/eval-pack">eval-pack</a>
+          <a class="subtle" href="https://zeroindex.ai">zeroindex.ai</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const hdr = document.getElementById('siteHeader');
+      if (!hdr) return;
+      function onScroll() {
+        hdr.classList.toggle('scrolled', window.scrollY > 4);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
 </body>
 </html>
