@@ -2,6 +2,7 @@
   "name": "evals-site",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.0.0",
   "description": "Public eval reports from ZeroIndex projects, served at evals.zeroindex.ai",
   "type": "module",
   "scripts": {
