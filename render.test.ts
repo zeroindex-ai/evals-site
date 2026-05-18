@@ -74,7 +74,7 @@ describe('wrapWithSiteShell', () => {
 describe('escapeHtml', () => {
   it('escapes the five HTML-sensitive characters', () => {
     expect(escapeHtml(`<a href="x" onclick='y'>&</a>`)).toBe(
-      '&lt;a href=&quot;x&quot; onclick=&#39;y&#39;&gt;&amp;&lt;/a&gt;',
+      '&lt;a href=&quot;x&quot; onclick=&#39;y&#39;&gt;&amp;&lt;/a&gt;'
     );
   });
 
@@ -88,10 +88,14 @@ describe('escapeHtml', () => {
 describe('parseArgs', () => {
   it('parses a complete argument set', () => {
     const args = parseArgs([
-      '--in', 'artifacts/run.json',
-      '--out', 'public/foo/latest.html',
-      '--project', 'foo',
-      '--threshold', '0.8',
+      '--in',
+      'artifacts/run.json',
+      '--out',
+      'public/foo/latest.html',
+      '--project',
+      'foo',
+      '--threshold',
+      '0.8',
     ]);
     expect(args).toEqual({
       in: 'artifacts/run.json',
@@ -102,22 +106,18 @@ describe('parseArgs', () => {
   });
 
   it('makes --threshold optional', () => {
-    const args = parseArgs([
-      '--in', 'a.json', '--out', 'b.html', '--project', 'p',
-    ]);
+    const args = parseArgs(['--in', 'a.json', '--out', 'b.html', '--project', 'p']);
     expect(args.threshold).toBeUndefined();
   });
 
   it('rejects a non-numeric --threshold value', () => {
     expect(() =>
-      parseArgs(['--in', 'a.json', '--out', 'b.html', '--project', 'p', '--threshold', 'abc']),
+      parseArgs(['--in', 'a.json', '--out', 'b.html', '--project', 'p', '--threshold', 'abc'])
     ).toThrow(/threshold/i);
   });
 
   it('rejects a --threshold without a value (next token is another flag)', () => {
-    expect(() =>
-      parseArgs(['--threshold', '--project', 'p']),
-    ).toThrow(/missing value for --threshold/i);
+    expect(() => parseArgs(['--threshold', '--project', 'p'])).toThrow(/missing value for --threshold/i);
   });
 
   it('rejects a flag with a missing value at the end of argv', () => {

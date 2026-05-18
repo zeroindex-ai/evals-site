@@ -60,12 +60,18 @@ export function parseArgs(argv: string[]): Args {
 export function escapeHtml(s: string): string {
   return s.replace(/[&<>"']/g, (c) => {
     switch (c) {
-      case '&': return '&amp;';
-      case '<': return '&lt;';
-      case '>': return '&gt;';
-      case '"': return '&quot;';
-      case "'": return '&#39;';
-      default:  return c;
+      case '&':
+        return '&amp;';
+      case '<':
+        return '&lt;';
+      case '>':
+        return '&gt;';
+      case '"':
+        return '&quot;';
+      case "'":
+        return '&#39;';
+      default:
+        return c;
     }
   });
 }
@@ -91,9 +97,7 @@ export function wrapWithSiteShell(innerHtml: string, projectName: string): strin
   // this function were not idempotent and produced nested shells), the *innermost*
   // <main class="report-shell"> is always the one that contains the actual
   // eval-pack body; everything outside it is duplicate ZeroIndex chrome.
-  const shellOpens = [
-    ...innerHtml.matchAll(/<main\b[^>]*\bclass="[^"]*\breport-shell\b[^"]*"[^>]*>/gi),
-  ];
+  const shellOpens = [...innerHtml.matchAll(/<main\b[^>]*\bclass="[^"]*\breport-shell\b[^"]*"[^>]*>/gi)];
 
   let bodyContent: string;
   if (shellOpens.length > 0) {
@@ -104,10 +108,7 @@ export function wrapWithSiteShell(innerHtml: string, projectName: string): strin
       if (end > start) {
         bodyContent = innerHtml.slice(start, end).trim();
         // Strip any leading "Eval Report" kicker the previous wrap added.
-        bodyContent = bodyContent.replace(
-          /^<div\s+class="label"[^>]*>\s*Eval Report\s*<\/div>\s*/i,
-          '',
-        );
+        bodyContent = bodyContent.replace(/^<div\s+class="label"[^>]*>\s*Eval Report\s*<\/div>\s*/i, '');
       } else {
         bodyContent = extractBody(innerHtml);
       }
@@ -187,7 +188,7 @@ async function main(): Promise<void> {
   const { in: input, out: output, project, threshold } = args;
   if (!input || !output || !project) {
     console.error(
-      'Usage: pnpm render --in <path.json|path.html> --out <path.html> --project <name> [--threshold <0..1>]',
+      'Usage: pnpm render --in <path.json|path.html> --out <path.html> --project <name> [--threshold <0..1>]'
     );
     process.exit(2);
     return;
