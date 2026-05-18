@@ -15,7 +15,7 @@
     "format:check": "prettier --check ."
   },
   "devDependencies": {
-    "@types/node": "^22.0.0",
+    "@types/node": "^25.8.0",
     "@zeroindex-ai/eval-pack": "^0.1.1",
     "prettier": "^3.8.3",
     "tsx": "^4.21.0",
