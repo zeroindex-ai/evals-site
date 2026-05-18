@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@types/node": "^25.8.0",
-    "@zeroindex-ai/eval-pack": "^0.1.1",
+    "@zeroindex-ai/eval-pack": "^0.2.0",
     "prettier": "^3.8.3",
     "tsx": "^4.21.0",
     "typescript": "^6.0.3",
