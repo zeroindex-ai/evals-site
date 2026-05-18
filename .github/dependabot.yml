@@ -1,0 +1,22 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      wrangler:
+        patterns:
+          - 'wrangler'
+          - '@cloudflare/*'
+      vitest:
+        patterns:
+          - 'vitest'
+          - '@vitest/*'
+      zeroindex:
+        patterns:
+          - '@zeroindex-ai/*'
+      types:
+        patterns:
+          - '@types/*'
