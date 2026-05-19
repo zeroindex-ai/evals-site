@@ -30,13 +30,14 @@ describe('wrapWithSiteShell', () => {
     expect(out).toContain('<div class="label">Eval Report</div>');
     expect(out).toContain('&copy; 2026 ZeroIndex LLC');
 
-    // Shared asset wiring (no inline CDN scripts, no Google Fonts)
+    // Shared asset wiring (no external scripts, no Google Fonts, brand mark inline)
     expect(out).toContain('<link rel="stylesheet" href="/styles/zeroindex.css"');
-    expect(out).toContain('src="/brand.svg"');
+    expect(out).toContain('viewBox="4 0 24 32"');
+    expect(out).toContain("getElementById('siteHeader')");
     expect(out).not.toContain('cdn.tailwindcss.com');
     expect(out).not.toContain('fonts.googleapis.com');
     expect(out).not.toContain('fonts.gstatic.com');
-    expect(out).not.toMatch(/<script\b/);
+    expect(out).not.toMatch(/<script\b[^>]*\bsrc=/);
 
     // Body kept; eval-pack's inner <footer> stripped
     expect(out).toContain('<h1>ask-zeroindex</h1>');
