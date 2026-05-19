@@ -67,13 +67,18 @@ body {
   opacity: 0.6;
 }
 
-/* sticky header — static thin rule; previously a JS-driven scroll fade. */
+/* sticky header — transparent border until scrolled, matches the canonical
+   ZeroIndex subdomain pattern (intake-zero, trace-pack, marketing apex). */
 .site-header {
   background: var(--bg);
   position: sticky;
   top: 0;
   z-index: 30;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+.site-header.scrolled {
+  border-bottom-color: var(--line);
 }
 
 /* Tier B header — utility surfaces; matches Tier A in everything but size.
