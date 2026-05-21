@@ -14,7 +14,8 @@
 // stand-alone via file:// (it relies on absolute paths under the site root)
 // but is fully self-contained behind evals.zeroindex.ai.
 
-import { readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { dirname } from 'node:path';
 import { renderHtml } from '@zeroindex-ai/eval-pack/report-html';
 import type { RunReport } from '@zeroindex-ai/eval-pack';
 
@@ -224,6 +225,9 @@ async function main(): Promise<void> {
   }
 
   const html = wrapWithSiteShell(inner, project);
+  // Create the parent dir so a brand-new project (e.g. its first publish) works
+  // without the dir pre-existing.
+  await mkdir(dirname(output), { recursive: true });
   await writeFile(output, html);
 
   if (report) {
