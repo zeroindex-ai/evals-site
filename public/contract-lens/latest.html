@@ -44,12 +44,12 @@
       <header>
     <h1>contract-lens eval results</h1>
     <div class="meta">
-      <span>Generated: <code>2026-05-21T05:53:41.631Z</code></span>
+      <span>Generated: <code>2026-05-21T06:33:49.829Z</code></span>
       <span>Judge: <code>none</code></span>
       <span>Items: 4</span>
       <span>Errored: 0</span>
     </div>
-    <div class="pass-rate ok">50.0% <small>/ threshold 50%</small></div>
+    <div class="pass-rate ok">100.0% <small>/ threshold 50%</small></div>
   </header>
 
   <h2>By category</h2>
@@ -67,77 +67,20 @@
       </tr>
 <tr>
         <td><code>msa</code></td>
-        <td class="num">0/1</td>
-        <td class="num">0%</td>
+        <td class="num">1/1</td>
+        <td class="num">100%</td>
       </tr>
 <tr>
         <td><code>cla</code></td>
-        <td class="num">0/1</td>
-        <td class="num">0%</td>
+        <td class="num">1/1</td>
+        <td class="num">100%</td>
       </tr></tbody>
   </table>
   
-        <h2>Failures (2)</h2>
-        
-    <details open>
-      <summary class="fail">✗ <code>consulting-msa</code> · msa · consulting-msa</summary>
-      
-    <div class="body">
-      <div class="field"><span class="field-label">Question:</span> consulting-msa</div>
-      <div class="field"><span class="field-label">Category:</span> <code>msa</code></div>
-      
-      
-      <div class="field"><span class="field-label">Recall@K:</span> <code>NaN%</code></div>
-      <div class="field"><span class="field-label">Total ms:</span> <code>22072</code></div>
-      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">field_values: ok</span> </div>
-<div><span class="tag ok">parties: ok</span> </div>
-<div><span class="tag fail">citations_verified: fail</span> <code>{&quot;offenders&quot;:[{&quot;field&quot;:&quot;kill_fee&quot;,&quot;match_quality&quot;:&quot;not-found&quot;}]}</code></div></div></div>
-      <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
-      <div class="field"><span class="field-label">Answer text:</span></div>
-      <div class="text">Parties: Meridian Health Systems, Inc. (Client) [normalized]; Atlas Strategic Advisors LLC (Provider) [normalized]
-Effective date: January 1, 2026 [normalized]
-Term: Initial term of 12 months from the Effective Date, then automatically renewing for successive 12-month terms unless either Party provides written notice of non-renewal at least 60 days before the end of the then-current term. [normalized]
-Payment terms: USD $250.00 per hour (unless SOW specifies otherwise); invoiced monthly in arrears; due net 30 days from receipt; late undisputed amounts accrue interest at the lesser of 1.5% per month or the maximum rate permitted by law. [normalized]
-Deliverables: Consulting services as described in one or more Statements of Work (SOWs) signed by both Parties. [normalized]
-IP ownership: Client owns all right, title, and interest in deliverables produced under an SOW (upon full payment). Provider retains ownership of pre-existing materials, methodologies, tools, frameworks, and know-how (Provider Tools), and grants Client a perpetual, non-exclusive, royalty-free license to use Provider Tools to the extent necessary to use the Deliverables. [normalized]
-Termination: Either Party may terminate for convenience on 30 days&#39; written notice, or immediately for material breach uncured within 15 days of notice, or upon insolvency/bankruptcy. Client must pay for all services rendered through the termination date. [normalized]
-Governing law: State of New York; exclusive jurisdiction in state and federal courts in New York County, New York. [normalized]
-Kill fee: null [not-found]
-Limitation of liability: Each Party&#39;s aggregate liability capped at total fees paid by Client to Provider in the 12 months preceding the claim (except for breach of confidentiality or indemnification obligations); no liability for indirect, incidental, special, consequential, or punitive damages. [normalized]</div>
-    </div>
-    </details>
-
-    <details open>
-      <summary class="fail">✗ <code>contributor-license-agreement</code> · cla · contributor-license-agreement</summary>
-      
-    <div class="body">
-      <div class="field"><span class="field-label">Question:</span> contributor-license-agreement</div>
-      <div class="field"><span class="field-label">Category:</span> <code>cla</code></div>
-      
-      
-      <div class="field"><span class="field-label">Recall@K:</span> <code>NaN%</code></div>
-      <div class="field"><span class="field-label">Total ms:</span> <code>12262</code></div>
-      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">field_values: ok</span> </div>
-<div><span class="tag ok">parties: ok</span> </div>
-<div><span class="tag fail">citations_verified: fail</span> <code>{&quot;offenders&quot;:[{&quot;field&quot;:&quot;deliverables&quot;,&quot;match_quality&quot;:&quot;not-found&quot;}]}</code></div></div></div>
-      <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
-      <div class="field"><span class="field-label">Answer text:</span></div>
-      <div class="text">Parties: Individual Contributor (You) (Contributor) [normalized]; Open Beacon Foundation (Foundation) [normalized]
-Effective date: Date signed by the Contributor [normalized]
-Term: Perpetual and irrevocable [exact]
-Payment terms: not in contract
-Deliverables: Original works of authorship (Contributions) intentionally submitted by the Contributor to the Foundation for inclusion in the Project [not-found]
-IP ownership: Contributor grants the Foundation a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright and patent license over Contributions [normalized]
-Termination: not in contract
-Governing law: State of Delaware (excluding conflict of laws principles) [normalized]
-Kill fee: not in contract
-Limitation of liability: Contributions provided on an AS IS basis, without warranties of any kind [exact]</div>
-    </div>
-    </details>
   
-        <h2>Passing (2)</h2>
+        <h2>Passing (4)</h2>
         <details>
-          <summary class="pass">Show 2 passing items</summary>
+          <summary class="pass">Show 4 passing items</summary>
           <div class="body">
             <table>
               <thead><tr><th>ID</th><th>Category</th><th>Question</th><th>Total ms</th></tr></thead>
@@ -145,13 +88,25 @@ Limitation of liability: Contributions provided on an AS IS basis, without warra
     <td><code>mutual-nda</code></td>
     <td>nda</td>
     <td>mutual-nda</td>
-    <td class="num">13629ms</td>
+    <td class="num">14242ms</td>
   </tr>
 <tr>
     <td><code>fixed-fee-sow</code></td>
     <td>sow</td>
     <td>fixed-fee-sow</td>
-    <td class="num">19794ms</td>
+    <td class="num">18716ms</td>
+  </tr>
+<tr>
+    <td><code>consulting-msa</code></td>
+    <td>msa</td>
+    <td>consulting-msa</td>
+    <td class="num">24729ms</td>
+  </tr>
+<tr>
+    <td><code>contributor-license-agreement</code></td>
+    <td>cla</td>
+    <td>contributor-license-agreement</td>
+    <td class="num">20199ms</td>
   </tr></tbody>
             </table>
           </div>
