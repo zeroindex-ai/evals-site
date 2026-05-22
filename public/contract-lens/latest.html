@@ -44,12 +44,12 @@
       <header>
     <h1>contract-lens eval results</h1>
     <div class="meta">
-      <span>Generated: <code>2026-05-21T16:37:19.815Z</code></span>
+      <span>Generated: <code>2026-05-22T02:25:46.626Z</code></span>
       <span>Judge: <code>none</code></span>
-      <span>Items: 4</span>
+      <span>Items: 8</span>
       <span>Errored: 0</span>
     </div>
-    <div class="pass-rate ok">75.0% <small>/ threshold 50%</small></div>
+    <div class="pass-rate ok">62.5% <small>/ threshold 50%</small></div>
   </header>
 
   <h2>By category</h2>
@@ -72,44 +72,120 @@
       </tr>
 <tr>
         <td><code>cla</code></td>
+        <td class="num">1/1</td>
+        <td class="num">100%</td>
+      </tr>
+<tr>
+        <td><code>employment</code></td>
+        <td class="num">1/1</td>
+        <td class="num">100%</td>
+      </tr>
+<tr>
+        <td><code>saas</code></td>
+        <td class="num">0/1</td>
+        <td class="num">0%</td>
+      </tr>
+<tr>
+        <td><code>letter</code></td>
+        <td class="num">0/1</td>
+        <td class="num">0%</td>
+      </tr>
+<tr>
+        <td><code>non-contract</code></td>
         <td class="num">0/1</td>
         <td class="num">0%</td>
       </tr></tbody>
   </table>
   
-        <h2>Failures (1)</h2>
+        <h2>Failures (3)</h2>
         
     <details open>
-      <summary class="fail">✗ <code>contributor-license-agreement</code> · cla · contributor-license-agreement</summary>
+      <summary class="fail">✗ <code>saas-order-form</code> · saas · saas-order-form</summary>
       
     <div class="body">
-      <div class="field"><span class="field-label">Question:</span> contributor-license-agreement</div>
-      <div class="field"><span class="field-label">Category:</span> <code>cla</code></div>
+      <div class="field"><span class="field-label">Question:</span> saas-order-form</div>
+      <div class="field"><span class="field-label">Category:</span> <code>saas</code></div>
       
       
       <div class="field"><span class="field-label">Recall@K:</span> <code>NaN%</code></div>
-      <div class="field"><span class="field-label">Total ms:</span> <code>13849</code></div>
-      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">field_values: ok</span> </div>
+      <div class="field"><span class="field-label">Total ms:</span> <code>17570</code></div>
+      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag fail">field_values: fail</span> <code>{&quot;mismatches&quot;:[{&quot;field&quot;:&quot;kill_fee&quot;,&quot;reason&quot;:&quot;expected absent, got \&quot;null\&quot;&quot;}]}</code></div>
 <div><span class="tag ok">parties: ok</span> </div>
-<div><span class="tag fail">citations_verified: fail</span> <code>{&quot;offenders&quot;:[{&quot;field&quot;:&quot;deliverables&quot;,&quot;match_quality&quot;:&quot;not-found&quot;}]}</code></div></div></div>
+<div><span class="tag fail">citations_verified: fail</span> <code>{&quot;offenders&quot;:[{&quot;field&quot;:&quot;kill_fee&quot;,&quot;match_quality&quot;:&quot;not-found&quot;}]}</code></div></div></div>
       <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
       <div class="field"><span class="field-label">Answer text:</span></div>
-      <div class="text">Parties: Individual Contributor (You) (Contributor) [normalized]; Open Beacon Foundation (Foundation) [normalized]
-Effective date: Date signed by the Contributor [normalized]
-Term: Perpetual and irrevocable [exact]
-Payment terms: not in contract
-Deliverables: Original works of authorship (including modifications or additions) submitted by the Contributor to the Foundation for inclusion in or documentation of the Foundation&#39;s projects [not-found]
-IP ownership: Contributor grants the Foundation a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright and patent license over all Contributions [normalized]
+      <div class="text">Parties: Brightpath Software, Inc. (Provider) [normalized]; Cascade Retail Group, LLC (Customer) [normalized]
+Effective date: March 1, 2026 [normalized]
+Term: 12 months from the Effective Date, auto-renewing for successive 12-month terms unless either party gives 30 days&#39; written notice of non-renewal [normalized]
+Payment terms: USD $48,000 annual subscription fee, invoiced annually in advance, due net 30 days from invoice date; fees are non-refundable [normalized]
+Deliverables: Brightpath Analytics Platform — Business plan, up to 50 named user seats, standard email support, 99.9% uptime SLA [normalized]
+IP ownership: Provider retains all right, title, and interest in the platform and related IP; Customer receives a non-exclusive, non-transferable license for internal business use during the subscription term [normalized]
+Termination: Either party may terminate for material breach uncured after 30 days&#39; written notice; upon termination, Customer access ceases and Provider makes data available for export for 30 days [normalized]
+Governing law: State of California [normalized]
+Kill fee: null [not-found]
+Limitation of liability: No indirect, incidental, or consequential damages; aggregate liability capped at total fees paid by Customer in the 12 months preceding the claim [normalized]</div>
+    </div>
+    </details>
+
+    <details open>
+      <summary class="fail">✗ <code>letter-agreement</code> · letter · letter-agreement</summary>
+      
+    <div class="body">
+      <div class="field"><span class="field-label">Question:</span> letter-agreement</div>
+      <div class="field"><span class="field-label">Category:</span> <code>letter</code></div>
+      
+      
+      <div class="field"><span class="field-label">Recall@K:</span> <code>NaN%</code></div>
+      <div class="field"><span class="field-label">Total ms:</span> <code>10061</code></div>
+      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag fail">field_values: fail</span> <code>{&quot;mismatches&quot;:[{&quot;field&quot;:&quot;ip_ownership&quot;,&quot;reason&quot;:&quot;expected absent, got \&quot;Not specified\&quot;&quot;},{&quot;field&quot;:&quot;termination_clause&quot;,&quot;reason&quot;:&quot;expected absent, got \&quot;Not specified\&quot;&quot;},{&quot;field&quot;:&quot;governing_law&quot;,&quot;reason&quot;:&quot;expected absent, got \&quot;Not specified\&quot;&quot;},{&quot;field&quot;:&quot;kill_fee&quot;,&quot;reason&quot;:&quot;expected absent, got \&quot;Not specified\&quot;&quot;},{&quot;field&quot;:&quot;limitation_of_liability&quot;,&quot;reason&quot;:&quot;expected absent, got \&quot;Not specified\&quot;&quot;}]}</code></div>
+<div><span class="tag ok">parties: ok</span> </div>
+<div><span class="tag fail">citations_verified: fail</span> <code>{&quot;offenders&quot;:[{&quot;field&quot;:&quot;ip_ownership&quot;,&quot;match_quality&quot;:&quot;not-found&quot;},{&quot;field&quot;:&quot;termination_clause&quot;,&quot;match_quality&quot;:&quot;not-found&quot;},{&quot;field&quot;:&quot;governing_law&quot;,&quot;match_quality&quot;:&quot;not-found&quot;},{&quot;field&quot;:&quot;kill_fee&quot;,&quot;match_quality&quot;:&quot;not-found&quot;},{&quot;field&quot;:&quot;limitation_of_liability&quot;,&quot;match_quality&quot;:&quot;not-found&quot;}]}</code></div></div></div>
+      <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
+      <div class="field"><span class="field-label">Answer text:</span></div>
+      <div class="text">Parties: Harbor Lane Advisors (Advisor) [exact]; Tessellate Media, Inc. (Client) [exact]
+Effective date: February 10, 2026 [normalized]
+Term: Not specified; no end date or duration stated [normalized]
+Payment terms: USD $8,000 per month, invoiced monthly, payable on receipt [normalized]
+Deliverables: Advisory working sessions and a written summary of recommendations on go-to-market strategy, market positioning, pricing guidance, and channel plan [normalized]
+IP ownership: Not specified [not-found]
+Termination: Not specified [not-found]
+Governing law: Not specified [not-found]
+Kill fee: Not specified [not-found]
+Limitation of liability: Not specified [not-found]</div>
+    </div>
+    </details>
+
+    <details open>
+      <summary class="fail">✗ <code>purchase-invoice</code> · non-contract · purchase-invoice</summary>
+      
+    <div class="body">
+      <div class="field"><span class="field-label">Question:</span> purchase-invoice</div>
+      <div class="field"><span class="field-label">Category:</span> <code>non-contract</code></div>
+      
+      
+      <div class="field"><span class="field-label">Recall@K:</span> <code>NaN%</code></div>
+      <div class="field"><span class="field-label">Total ms:</span> <code>9307</code></div>
+      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag fail">field_values: fail</span> <code>{&quot;mismatches&quot;:[{&quot;field&quot;:&quot;term&quot;,&quot;reason&quot;:&quot;expected absent, got \&quot;Net 30 — payment due May 3, 2026\&quot;&quot;}]}</code></div>
+<div><span class="tag ok">parties: ok</span> </div>
+<div><span class="tag ok">citations_verified: ok</span> </div></div></div>
+      <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
+      <div class="field"><span class="field-label">Answer text:</span></div>
+      <div class="text">Parties: Summit Office Supply Co. (Seller) [exact]; Lakeside Consulting LLC (Buyer) [exact]
+Effective date: April 3, 2026 [exact]
+Term: Net 30 — payment due May 3, 2026 [exact]
+Payment terms: Total of $6,420.00 USD due within 30 days of invoice date (May 3, 2026); checks payable to Summit Office Supply Co. [exact]
+Deliverables: 6x Ergonomic task chair ($2,520), 4x Height-adjustable desk ($2,720), 8x Monitor arm dual ($880), 1x Delivery and assembly ($300); Total $6,420.00 [exact]
+IP ownership: not in contract
 Termination: not in contract
-Governing law: State of Delaware, excluding conflict of laws principles [normalized]
+Governing law: not in contract
 Kill fee: not in contract
-Limitation of liability: Contributions provided on an AS IS basis, without warranties of any kind (express or implied), including no warranties of title, non-infringement, merchantability, or fitness for a particular purpose [exact]</div>
+Limitation of liability: not in contract</div>
     </div>
     </details>
   
-        <h2>Passing (3)</h2>
+        <h2>Passing (5)</h2>
         <details>
-          <summary class="pass">Show 3 passing items</summary>
+          <summary class="pass">Show 5 passing items</summary>
           <div class="body">
             <table>
               <thead><tr><th>ID</th><th>Category</th><th>Question</th><th>Total ms</th></tr></thead>
@@ -117,19 +193,31 @@ Limitation of liability: Contributions provided on an AS IS basis, without warra
     <td><code>mutual-nda</code></td>
     <td>nda</td>
     <td>mutual-nda</td>
-    <td class="num">13246ms</td>
+    <td class="num">34564ms</td>
   </tr>
 <tr>
     <td><code>fixed-fee-sow</code></td>
     <td>sow</td>
     <td>fixed-fee-sow</td>
-    <td class="num">19808ms</td>
+    <td class="num">20093ms</td>
   </tr>
 <tr>
     <td><code>consulting-msa</code></td>
     <td>msa</td>
     <td>consulting-msa</td>
-    <td class="num">24061ms</td>
+    <td class="num">24357ms</td>
+  </tr>
+<tr>
+    <td><code>contributor-license-agreement</code></td>
+    <td>cla</td>
+    <td>contributor-license-agreement</td>
+    <td class="num">14410ms</td>
+  </tr>
+<tr>
+    <td><code>employment-agreement</code></td>
+    <td>employment</td>
+    <td>employment-agreement</td>
+    <td class="num">15909ms</td>
   </tr></tbody>
             </table>
           </div>
