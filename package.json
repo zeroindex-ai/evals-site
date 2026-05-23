@@ -11,7 +11,7 @@
     "build:css:watch": "tailwindcss -i src/styles/input.css -o public/styles/zeroindex.css --watch",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "dev": "vercel dev",
+    "dev": "serve public",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
@@ -20,6 +20,7 @@
     "@types/node": "^25.8.0",
     "@zeroindex-ai/eval-pack": "^0.2.0",
     "prettier": "^3.8.3",
+    "serve": "^14.2.6",
     "tailwindcss": "^4.3.0",
     "tsx": "^4.21.0",
     "typescript": "^6.0.3",
