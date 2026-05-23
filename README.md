@@ -26,7 +26,7 @@ evals-site/
 ├── render.test.ts                ← vitest snapshot + arg-parsing tests
 ├── tsconfig.json
 ├── package.json                  ← dev tooling only; not deployed
-└── wrangler.jsonc
+└── vercel.json                   ← cleanUrls routing
 ```
 
 ## URL layout
@@ -36,7 +36,7 @@ evals.zeroindex.ai/                       → landing page (public/index.html)
 evals.zeroindex.ai/<project>/latest       → latest run for that project
 ```
 
-`wrangler.jsonc` pins `assets.html_handling: "auto-trailing-slash"` and `assets.not_found_handling: "404-page"`, so `/ask-zeroindex/latest` resolves to `latest.html` and unknown paths render `/404.html`.
+`vercel.json` sets `cleanUrls: true`, so `/ask-zeroindex/latest` serves `latest.html` and the `.html` form 308-redirects to the extensionless canonical shape. Unknown paths fall back to `/404.html` automatically (Vercel serves a top-level `404.html` from the output directory).
 
 ## Add or refresh a report
 
@@ -53,7 +53,7 @@ pnpm render \
   --out public/<project>/latest.html \
   --project <project>
 
-# 3. Commit + push — Cloudflare auto-deploys.
+# 3. Commit + push — Vercel auto-deploys.
 git add public/<project>/latest.html && git commit -m "Refresh <project> report" && git push
 ```
 
@@ -62,12 +62,12 @@ git add public/<project>/latest.html && git commit -m "Refresh <project> report"
 ```bash
 pnpm typecheck   # tsc --noEmit, strict + noUncheckedIndexedAccess
 pnpm test        # vitest run — covers wrapWithSiteShell + parseArgs
-pnpm dev         # wrangler dev — serves ./public locally
+pnpm dev         # vercel dev — serves ./public locally with cleanUrls routing
 ```
 
 ## Deploy
 
-`main` → Cloudflare Workers Static Assets (auto-deploy via the `cloudflare-workers-and-pages` GitHub App, same pipeline as [`zeroindexai`](https://github.com/zeroindex-ai/zeroindexai)).
+`main` → Vercel (auto-deploy via the Vercel GitHub integration). Pushing to `main` ships to production at `evals.zeroindex.ai`.
 
 ## License
 
