@@ -1,6 +1,5 @@
 node_modules/
-.wrangler/
-.dev.vars
+.vercel
 .DS_Store
 
 # downloaded CI artifacts — keep them out of git; render to HTML then discard

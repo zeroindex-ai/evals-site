@@ -11,8 +11,7 @@
     "build:css:watch": "tailwindcss -i src/styles/input.css -o public/styles/zeroindex.css --watch",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy",
+    "dev": "vercel dev",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
@@ -25,7 +24,6 @@
     "tsx": "^4.21.0",
     "typescript": "^6.0.3",
     "vite": "^7.1.13",
-    "vitest": "^4.1.6",
-    "wrangler": "^4.92.0"
+    "vitest": "^4.1.6"
   }
 }
