@@ -33,10 +33,16 @@ describe('wrapWithSiteShell', () => {
     // Shared asset wiring (no Tailwind CDN script, brand mark inline, fonts via Google Fonts)
     expect(out).toContain('<link rel="stylesheet" href="/styles/zeroindex.css"');
     expect(out).toContain('viewBox="4 0 24 32"');
-    expect(out).toContain("getElementById('siteHeader')");
     expect(out).toContain('fonts.googleapis.com/css2?family=Inter');
     expect(out).not.toContain('cdn.tailwindcss.com');
     expect(out).not.toMatch(/<script\b[^>]*\bsrc=/);
+
+    // Refreshed header chrome: CTA-pill back link + permanent inset border,
+    // and the old scroll-toggle script is gone (border is always on).
+    expect(out).toContain('class="btn-primary"');
+    expect(out).toContain('border-b line');
+    expect(out).not.toContain('siteHeader');
+    expect(out).not.toContain('window.scrollY');
 
     // Body kept; eval-pack's inner <footer> stripped
     expect(out).toContain('<h1>ask-zeroindex</h1>');
