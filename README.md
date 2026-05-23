@@ -62,7 +62,7 @@ git add public/<project>/latest.html && git commit -m "Refresh <project> report"
 ```bash
 pnpm typecheck   # tsc --noEmit, strict + noUncheckedIndexedAccess
 pnpm test        # vitest run — covers wrapWithSiteShell + parseArgs
-pnpm dev         # vercel dev — serves ./public locally with cleanUrls routing
+pnpm dev         # serve ./public locally (clean-URL routing, mirrors prod)
 ```
 
 ## Deploy
