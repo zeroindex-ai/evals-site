@@ -290,31 +290,60 @@
     font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
   }
 
+  /* Canonical data-grid style — see reference_zeroindex_admin_grid_style memory.
+     Uniform mono cells, left-aligned (numbers too), color carries hierarchy.
+     eval-pack emits a bare <table>, so the .card/.table-scroll frame, sticky
+     header, and table-layout:fixed+<colgroup> rules don't apply here — those
+     need markup we don't control. The cell/header treatment does. */
   .report-shell table {
     width: 100%;
     border-collapse: collapse;
     margin: 12px 0;
-    font-size: 14px;
   }
   .report-shell th,
   .report-shell td {
-    padding: 10px 14px;
     text-align: left;
     border-bottom: 1px solid var(--line);
+    font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+    /* wrap free-text columns instead of forcing a horizontal scrollbar */
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
   .report-shell th {
-    background: var(--bg-soft);
-    font-weight: 500;
+    padding: 8px 12px 8px 0;
     font-size: 11px;
-    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+    color: var(--muted-2);
+    vertical-align: bottom;
+    /* Header text never wraps — forces each column at least header-wide while
+       the free-text body cells (Question) absorb the remaining width. */
+    white-space: nowrap;
   }
+  .report-shell td {
+    padding: 10px 12px 10px 0;
+    font-size: 13px;
+    color: var(--muted);
+    vertical-align: top;
+  }
+  /* Identifier column: eval-pack wraps the slug in <code>. Render it as uniform
+     mono ink (the row's primary value) — not the violet chip used for inline
+     code elsewhere in the report body. */
+  .report-shell table code {
+    background: none;
+    color: var(--ink);
+    padding: 0;
+    font-size: 13px;
+  }
+  /* Numeric cells are LEFT-aligned — the header is left-aligned, so the values
+     must be too or the column doesn't line up. */
   .report-shell td.num {
+    text-align: left;
     font-variant-numeric: tabular-nums;
-    text-align: right;
-    font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  .report-shell tbody tr:last-child td {
+    border-bottom: none;
   }
 
   .report-shell details {
