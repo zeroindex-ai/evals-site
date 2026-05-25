@@ -8,8 +8,9 @@
 // the file is detected as HTML and rewrapped through wrapWithSiteShell. This is the
 // migration path for reports whose source artifact has been lost.
 //
-// No Tailwind CDN, no Google Fonts, no client JS. The site CSS lives at
-// /styles/zeroindex.css and the brand mark at /brand.svg — both served as
+// No Tailwind CDN, no client JS. Inter + JetBrains Mono load from Google Fonts
+// (see the <head> links below — matches the canonical ZeroIndex chrome). The
+// site CSS lives at /styles/zeroindex.css and the brand mark at /brand.svg — both served as
 // static assets by Vercel. The rendered HTML is therefore not viewable
 // stand-alone via file:// (it relies on absolute paths under the site root)
 // but is fully self-contained behind evals.zeroindex.ai.
