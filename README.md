@@ -6,7 +6,7 @@ Static site at [`evals.zeroindex.ai`](https://evals.zeroindex.ai) hosting public
 
 Public eval reports — one HTML file per project, regenerated whenever that project's eval CI runs. Each report is produced by [`@zeroindex-ai/eval-pack`](https://github.com/zeroindex-ai/eval-pack)'s `renderHtml` and re-skinned to the ZeroIndex visual language by [`render.ts`](./render.ts).
 
-No client JS, no third-party CDN scripts, no Google Fonts. The pages share a single same-origin stylesheet at [`/styles/zeroindex.css`](./public/styles/zeroindex.css) and a single brand mark at [`/brand.svg`](./public/brand.svg). Typography falls back to `ui-sans-serif` / `ui-monospace`, picking up the visitor's installed `JetBrains Mono` if present.
+No client JS. The pages load Inter + JetBrains Mono from Google Fonts — matching the rest of the ZeroIndex properties; without them the type drifts from the apex — and otherwise share a single same-origin stylesheet at [`/styles/zeroindex.css`](./public/styles/zeroindex.css) and a single brand mark at [`/brand.svg`](./public/brand.svg). Type falls back to `ui-sans-serif` / `ui-monospace` (and an installed `JetBrains Mono`) if the web fonts fail to load.
 
 ## Layout
 
