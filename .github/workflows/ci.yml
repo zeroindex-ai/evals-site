@@ -30,4 +30,10 @@ jobs:
 
       - run: pnpm typecheck
 
+      # Build the static stylesheet before testing: the no-JIT class-check
+      # (class-check.test.ts) asserts every class referenced in render.ts output
+      # and public/**/*.html resolves to a rule in the built CSS. The test also
+      # rebuilds it itself, but building here keeps the shipped artifact fresh.
+      - run: pnpm build:css
+
       - run: pnpm test
