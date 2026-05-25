@@ -47,7 +47,7 @@
       <header>
     <h1>contract-lens eval results</h1>
     <div class="meta">
-      <span>Generated: <code>2026-05-25T05:51:52.616Z</code></span>
+      <span>Generated: <code>2026-05-25T16:19:58.944Z</code></span>
       <span>Judge: <code>none</code></span>
       <span>Items: 8</span>
       <span>Errored: 0</span>
@@ -70,8 +70,8 @@
       </tr>
 <tr>
         <td><code>msa</code></td>
-        <td class="num">0/1</td>
-        <td class="num">0%</td>
+        <td class="num">1/1</td>
+        <td class="num">100%</td>
       </tr>
 <tr>
         <td><code>sow</code></td>
@@ -90,8 +90,8 @@
       </tr>
 <tr>
         <td><code>letter</code></td>
-        <td class="num">1/1</td>
-        <td class="num">100%</td>
+        <td class="num">0/1</td>
+        <td class="num">0%</td>
       </tr>
 <tr>
         <td><code>non-contract</code></td>
@@ -103,40 +103,31 @@
         <h2>Failures (1)</h2>
         
     <details open>
-      <summary class="fail">✗ <code>consulting-msa</code> · msa · consulting-msa</summary>
+      <summary class="fail">✗ <code>letter-agreement</code> · letter · letter-agreement</summary>
       
     <div class="body">
-      <div class="field"><span class="field-label">Question:</span> consulting-msa</div>
-      <div class="field"><span class="field-label">Category:</span> <code>msa</code></div>
+      <div class="field"><span class="field-label">Question:</span> letter-agreement</div>
+      <div class="field"><span class="field-label">Category:</span> <code>letter</code></div>
       
       
       <div class="field"><span class="field-label">Recall@K:</span> <code>NaN%</code></div>
-      <div class="field"><span class="field-label">Total ms:</span> <code>27425</code></div>
+      <div class="field"><span class="field-label">Total ms:</span> <code>10961</code></div>
       <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">document_type: ok</span> </div>
-<div><span class="tag ok">parties: ok</span> </div>
+<div><span class="tag fail">parties: fail</span> <code>{&quot;missing&quot;:[&quot;Tessellate&quot;],&quot;extracted&quot;:&quot;Harbor Lane Advisors&quot;}</code></div>
 <div><span class="tag ok">key_facts: ok</span> </div>
 <div><span class="tag ok">must_not: ok</span> </div>
-<div><span class="tag fail">citations_verified: fail</span> <code>{&quot;offenders&quot;:[{&quot;item&quot;:&quot;Governing Law &amp; Jurisdiction&quot;,&quot;match_quality&quot;:&quot;not-found&quot;}]}</code></div></div></div>
+<div><span class="tag fail">citations_verified: fail</span> <code>{&quot;offenders&quot;:[{&quot;item&quot;:&quot;party:Harbor Lane Advisors&quot;,&quot;match_quality&quot;:&quot;wrong-page&quot;}]}</code></div></div></div>
       <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
       <div class="field"><span class="field-label">Answer text:</span></div>
-      <div class="text">Type: Master Services Agreement (Consulting)
-Summary: A framework consulting services agreement between Meridian Health Systems, Inc. (Client) and Atlas Strategic Advisors LLC (Provider), effective January 1, 2026, governing the terms under which Provider will perform consulting services via individual Statements of Work. It sets out fees, IP ownership, confidentiality, termination rights, and liability limits.
-Parties: Meridian Health Systems, Inc. (Client) [normalized]; Atlas Strategic Advisors LLC (Provider) [normalized]; Dr. Aisha Rahman (Signatory (Chief Information Officer, Meridian Health Systems)) [exact]; Jonathan Kessler (Signatory (Managing Director, Atlas Strategic Advisors)) [exact]
-Effective Date: January 1, 2026 [normalized]
-Initial Term: 12 months from the Effective Date [exact]
-Auto-Renewal: Successive 12-month terms unless either Party gives 60 days&#39; written notice of non-renewal before term end [normalized]
-Hourly Rate (Default): USD $250.00 per hour [normalized]
-Invoice Frequency &amp; Payment Terms: Monthly in arrears; due net 30 days from receipt [normalized]
-Late Payment Interest: 1.5% per month or maximum rate permitted by law, whichever is less [normalized]
-Deliverable IP Ownership: Client owns all deliverables produced under an SOW, conditioned on full payment [normalized]
-Provider Tools License: Provider retains pre-existing tools/methodologies; grants Client a perpetual, non-exclusive, royalty-free license to use them as needed for the Deliverables [normalized]
-Termination for Convenience: Either Party may terminate on 30 days&#39; prior written notice [normalized]
-Termination for Cause – Cure Period: Immediate termination if material breach is not cured within 15 days of written notice [normalized]
-Confidentiality Survival Period: 5 years after termination [normalized]
-Liability Cap: Aggregate liability capped at total fees paid in the 12 months preceding the claim (excluding confidentiality/indemnification breaches) [normalized]
-Consequential Damages Waiver: Neither party liable for indirect, incidental, special, consequential, or punitive damages [normalized]
-Governing Law &amp; Jurisdiction: New York law; exclusive jurisdiction in state and federal courts in New York County [not-found]
-Relationship of Parties: Independent contractor; no partnership, JV, agency, or employment relationship created [normalized]</div>
+      <div class="text">Type: Advisory Services Engagement Letter
+Summary: This engagement letter formalizes Harbor Lane Advisors&#39; retention by Tessellate Media, Inc. to provide go-to-market advisory services, including market positioning, pricing guidance, and a channel plan, at a fixed monthly fee.
+Parties: Harbor Lane Advisors (Advisor) [wrong-page]
+Effective Date: February 10, 2026 [normalized]
+Monthly Fee: USD $8,000 per month [exact]
+Invoice Payment Terms: Payable on receipt [exact]
+Scope of Services: Go-to-market strategy advisory: market positioning, pricing guidance, and recommended channel plan [normalized]
+Deliverable Format: Working sessions and a written summary of recommendations [normalized]
+Advisor Signatory: Nadia Brooks, Principal [exact]</div>
     </div>
     </details>
   
@@ -150,43 +141,43 @@ Relationship of Parties: Independent contractor; no partnership, JV, agency, or 
     <td><code>mutual-nda</code></td>
     <td>nda</td>
     <td>mutual-nda</td>
-    <td class="num">17619ms</td>
+    <td class="num">18170ms</td>
   </tr>
 <tr>
     <td><code>employment-agreement</code></td>
     <td>employment</td>
     <td>employment-agreement</td>
-    <td class="num">17049ms</td>
+    <td class="num">15794ms</td>
+  </tr>
+<tr>
+    <td><code>consulting-msa</code></td>
+    <td>msa</td>
+    <td>consulting-msa</td>
+    <td class="num">23259ms</td>
   </tr>
 <tr>
     <td><code>fixed-fee-sow</code></td>
     <td>sow</td>
     <td>fixed-fee-sow</td>
-    <td class="num">19130ms</td>
+    <td class="num">20755ms</td>
   </tr>
 <tr>
     <td><code>saas-order-form</code></td>
     <td>order-form</td>
     <td>saas-order-form</td>
-    <td class="num">19689ms</td>
+    <td class="num">17979ms</td>
   </tr>
 <tr>
     <td><code>contributor-license-agreement</code></td>
     <td>cla</td>
     <td>contributor-license-agreement</td>
-    <td class="num">17019ms</td>
-  </tr>
-<tr>
-    <td><code>letter-agreement</code></td>
-    <td>letter</td>
-    <td>letter-agreement</td>
-    <td class="num">10931ms</td>
+    <td class="num">19015ms</td>
   </tr>
 <tr>
     <td><code>purchase-invoice</code></td>
     <td>non-contract</td>
     <td>purchase-invoice</td>
-    <td class="num">13399ms</td>
+    <td class="num">12202ms</td>
   </tr></tbody>
             </table>
           </div>
