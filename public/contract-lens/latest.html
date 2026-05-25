@@ -47,12 +47,12 @@
       <header>
     <h1>contract-lens eval results</h1>
     <div class="meta">
-      <span>Generated: <code>2026-05-25T22:05:50.876Z</code></span>
+      <span>Generated: <code>2026-05-25T22:51:24.716Z</code></span>
       <span>Judge: <code>none</code></span>
       <span>Items: 8</span>
       <span>Errored: 0</span>
     </div>
-    <div class="pass-rate ok">75.0% <small>/ threshold 75%</small></div>
+    <div class="pass-rate ok">100.0% <small>/ threshold 75%</small></div>
   </header>
 
   <h2>By category</h2>
@@ -75,8 +75,8 @@
       </tr>
 <tr>
         <td><code>sow</code></td>
-        <td class="num">0/1</td>
-        <td class="num">0%</td>
+        <td class="num">1/1</td>
+        <td class="num">100%</td>
       </tr>
 <tr>
         <td><code>order-form</code></td>
@@ -90,8 +90,8 @@
       </tr>
 <tr>
         <td><code>letter</code></td>
-        <td class="num">0/1</td>
-        <td class="num">0%</td>
+        <td class="num">1/1</td>
+        <td class="num">100%</td>
       </tr>
 <tr>
         <td><code>non-contract</code></td>
@@ -100,66 +100,10 @@
       </tr></tbody>
   </table>
   
-        <h2>Failures (2)</h2>
-        
-    <details open>
-      <summary class="fail">✗ <code>fixed-fee-sow</code> · sow · fixed-fee-sow</summary>
-      
-    <div class="body">
-      <div class="field"><span class="field-label">Question:</span> fixed-fee-sow</div>
-      <div class="field"><span class="field-label">Category:</span> <code>sow</code></div>
-      
-      
-      <div class="field"><span class="field-label">Recall@K:</span> <code>NaN%</code></div>
-      <div class="field"><span class="field-label">Total ms:</span> <code>7644</code></div>
-      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">document_type: ok</span> </div>
-<div><span class="tag fail">parties: fail</span> <code>{&quot;missing&quot;:[&quot;BlueRiver&quot;],&quot;extracted&quot;:&quot;Phoenix Industries Inc.&quot;}</code></div>
-<div><span class="tag fail">key_facts: fail</span> <code>{&quot;missing&quot;:[&quot;$42,000&quot;,&quot;california&quot;]}</code></div>
-<div><span class="tag ok">must_not: ok</span> </div>
-<div><span class="tag ok">citations_verified: ok</span> </div></div></div>
-      <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
-      <div class="field"><span class="field-label">Answer text:</span></div>
-      <div class="text">Type: Fixed-Fee Statement of Work
-Summary: This Statement of Work (SOW-2026-014) engages BlueRiver Consulting Group LLC to migrate Phoenix Industries Inc.&#39;s data pipeline from Airflow 1.x to a managed Dagster deployment for a fixed fee of USD $42,000. It covers DAG conversions, a runbook, and a two-week operational handoff, with all work product assigned to the Client.
-Parties: Phoenix Industries Inc. (Client) [exact]
-SOW Identifier: SOW-2026-014 [exact]
-Effective Date: April 15, 2026 [exact]</div>
-    </div>
-    </details>
-
-    <details open>
-      <summary class="fail">✗ <code>letter-agreement</code> · letter · letter-agreement</summary>
-      
-    <div class="body">
-      <div class="field"><span class="field-label">Question:</span> letter-agreement</div>
-      <div class="field"><span class="field-label">Category:</span> <code>letter</code></div>
-      
-      
-      <div class="field"><span class="field-label">Recall@K:</span> <code>NaN%</code></div>
-      <div class="field"><span class="field-label">Total ms:</span> <code>9887</code></div>
-      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">document_type: ok</span> </div>
-<div><span class="tag fail">parties: fail</span> <code>{&quot;missing&quot;:[&quot;Tessellate&quot;],&quot;extracted&quot;:&quot;Harbor Lane Advisors • Harbor Lane Advisors&quot;}</code></div>
-<div><span class="tag ok">key_facts: ok</span> </div>
-<div><span class="tag ok">must_not: ok</span> </div>
-<div><span class="tag ok">citations_verified: ok</span> </div></div></div>
-      <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
-      <div class="field"><span class="field-label">Answer text:</span></div>
-      <div class="text">Type: Advisory Services Engagement Letter
-Summary: Harbor Lane Advisors engages Tessellate Media, Inc. as a client for go-to-market advisory services, including market positioning, pricing guidance, and a channel plan. The letter sets out the scope of work, a monthly fee, and requires countersignature by the client to take effect.
-Parties: Harbor Lane Advisors (Advisor) [exact]; Harbor Lane Advisors (Advisor) [exact]
-Effective Date: February 10, 2026 [normalized]
-Monthly Fee: USD $8,000 per month [exact]
-Payment Terms: Payable on receipt [exact]
-Scope of Services: Go-to-market strategy advisory: market positioning, pricing guidance, and a recommended channel plan [normalized]
-Deliverables: Working sessions and a written summary of recommendations [normalized]
-Billing Frequency: Monthly [exact]
-Advisor Signatory: Nadia Brooks, Principal [exact]</div>
-    </div>
-    </details>
   
-        <h2>Passing (6)</h2>
+        <h2>Passing (8)</h2>
         <details>
-          <summary class="pass">Show 6 passing items</summary>
+          <summary class="pass">Show 8 passing items</summary>
           <div class="body">
             <table>
               <thead><tr><th>ID</th><th>Category</th><th>Question</th><th>Total ms</th></tr></thead>
@@ -167,37 +111,49 @@ Advisor Signatory: Nadia Brooks, Principal [exact]</div>
     <td><code>mutual-nda</code></td>
     <td>nda</td>
     <td>mutual-nda</td>
-    <td class="num">17892ms</td>
+    <td class="num">16910ms</td>
   </tr>
 <tr>
     <td><code>employment-agreement</code></td>
     <td>employment</td>
     <td>employment-agreement</td>
-    <td class="num">14092ms</td>
+    <td class="num">14194ms</td>
   </tr>
 <tr>
     <td><code>consulting-msa</code></td>
     <td>msa</td>
     <td>consulting-msa</td>
-    <td class="num">23427ms</td>
+    <td class="num">24397ms</td>
+  </tr>
+<tr>
+    <td><code>fixed-fee-sow</code></td>
+    <td>sow</td>
+    <td>fixed-fee-sow</td>
+    <td class="num">23835ms</td>
   </tr>
 <tr>
     <td><code>saas-order-form</code></td>
     <td>order-form</td>
     <td>saas-order-form</td>
-    <td class="num">17696ms</td>
+    <td class="num">19976ms</td>
   </tr>
 <tr>
     <td><code>contributor-license-agreement</code></td>
     <td>cla</td>
     <td>contributor-license-agreement</td>
-    <td class="num">17823ms</td>
+    <td class="num">17006ms</td>
+  </tr>
+<tr>
+    <td><code>letter-agreement</code></td>
+    <td>letter</td>
+    <td>letter-agreement</td>
+    <td class="num">10928ms</td>
   </tr>
 <tr>
     <td><code>purchase-invoice</code></td>
     <td>non-contract</td>
     <td>purchase-invoice</td>
-    <td class="num">12682ms</td>
+    <td class="num">17810ms</td>
   </tr></tbody>
             </table>
           </div>
