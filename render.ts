@@ -180,7 +180,7 @@ export function wrapWithSiteShell(innerHtml: string, projectName: string): strin
         <div class="mono">&copy; 2026 ZeroIndex LLC &middot; Pennsylvania</div>
         <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
           <a class="subtle" href="https://github.com/zeroindex-ai/evals-site">Source</a>
-          <a class="subtle" href="mailto:hello@zeroindex.ai">hello@zeroindex.ai</a>
+          <a class="subtle" href="mailto:hello@zeroindex.ai" target="_blank" rel="noopener noreferrer">hello@zeroindex.ai</a>
           <a class="subtle" href="https://zeroindex.ai">zeroindex.ai</a>
         </div>
       </div>
