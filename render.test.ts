@@ -1,4 +1,9 @@
-import { describe, expect, it } from 'vitest';
+import { execFileSync } from 'node:child_process';
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { escapeHtml, parseArgs, redactAnswerText, wrapWithSiteShell } from './render.ts';
 
 // ─── wrapWithSiteShell ──────────────────────────────────────────────────────
@@ -72,6 +77,32 @@ describe('wrapWithSiteShell', () => {
     // be safely escaped, not just one of them.
     expect(out).toMatch(/<title>&lt;script&gt;[^<]*<\/title>/);
     expect(out).toMatch(/content="Live eval report for &lt;script&gt;/);
+  });
+
+  // Guards the <head> against silent regressions: every required favicon link,
+  // the Google-Fonts preconnect + stylesheet, and the pre-built site CSS must be
+  // present. evals-site ships a static stylesheet (no JIT at deploy), so a
+  // dropped <link> would break the page with no error anywhere.
+  it('emits the required <head> tags (favicons, fonts, site CSS)', () => {
+    const out = wrapWithSiteShell(RAW_EVAL_PACK_HTML, 'ask-zeroindex');
+    const head = out.slice(out.indexOf('<head>'), out.indexOf('</head>'));
+
+    // 5-file favicon set
+    expect(head).toContain('<link rel="icon" href="/favicon.ico" sizes="any" />');
+    expect(head).toContain('<link rel="icon" type="image/svg+xml" href="/favicon.svg" />');
+    expect(head).toContain('<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />');
+    expect(head).toContain('<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />');
+    expect(head).toContain('<link rel="apple-touch-icon" href="/favicon-180x180.png" />');
+
+    // Google-Fonts preconnect pair + the stylesheet link
+    expect(head).toContain('<link rel="preconnect" href="https://fonts.googleapis.com" />');
+    expect(head).toContain('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />');
+    expect(head).toContain(
+      '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />'
+    );
+
+    // The pre-built ZeroIndex site stylesheet
+    expect(head).toContain('<link rel="stylesheet" href="/styles/zeroindex.css" />');
   });
 });
 
@@ -178,5 +209,69 @@ describe('redactAnswerText', () => {
     const body = `<body><main class="report-shell">${ITEM_WITH_ANSWER}</main></body>`;
     expect(wrapWithSiteShell(body, 'intake-zero')).toContain('class="text"');
     expect(wrapWithSiteShell(body, 'intake-zero', { redactAnswers: true })).not.toContain('class="text"');
+  });
+});
+
+// ─── main() CLI round-trip ────────────────────────────────────────────────────
+
+// Exercises the full CLI path: a RunReport JSON on disk → `tsx render.ts` →
+// a wrapped HTML file on disk. Spawns the script as a subprocess (the real
+// entrypoint) so process.argv parsing, file I/O, mkdir, and eval-pack's
+// renderHtml all run end-to-end, then asserts the output exists and carries the
+// expected markers. Mirrors a minimal @zeroindex-ai/eval-pack RunReport shape.
+describe('main() round-trip', () => {
+  const repoRoot = dirname(fileURLToPath(import.meta.url));
+  let tmp: string;
+
+  const REPORT = {
+    ran: '2026-05-25T00:00:00.000Z',
+    results: [
+      {
+        id: 'q1',
+        category: 'smoke',
+        question: 'What does ZeroIndex do?',
+        text: 'It publishes eval reports.',
+        retrievedRefs: [],
+        citationRefs: [],
+        recallAtK: null,
+        timings: { totalMs: 1200 },
+        metadata: {},
+        checks: [],
+        judgment: null,
+        pass: true,
+      },
+    ],
+    errors: [],
+  };
+
+  beforeAll(() => {
+    tmp = mkdtempSync(join(tmpdir(), 'evals-site-roundtrip-'));
+  });
+
+  afterAll(() => {
+    rmSync(tmp, { recursive: true, force: true });
+  });
+
+  it('writes a wrapped HTML report from a JSON input', () => {
+    const inPath = join(tmp, 'run.json');
+    const outPath = join(tmp, 'nested', 'latest.html'); // nested dir tests mkdir
+    writeFileSync(inPath, JSON.stringify(REPORT));
+
+    const stdout = execFileSync(
+      'pnpm',
+      ['render', '--in', inPath, '--out', outPath, '--project', 'round-trip-demo'],
+      { cwd: repoRoot, encoding: 'utf-8' }
+    );
+
+    expect(stdout).toContain('1/1 passed (100%)');
+    expect(existsSync(outPath)).toBe(true);
+
+    const html = readFileSync(outPath, 'utf-8');
+    expect(html.startsWith('<!DOCTYPE html>')).toBe(true);
+    expect(html).toContain('<title>round-trip-demo eval results · ZeroIndex</title>');
+    expect(html).toContain('class="report-shell"');
+    expect(html).toContain('<div class="label">Eval Report</div>');
+    expect(html).toContain('What does ZeroIndex do?');
+    expect(html).toContain('<link rel="stylesheet" href="/styles/zeroindex.css" />');
   });
 });

@@ -20,9 +20,45 @@
 // but is fully self-contained behind evals.zeroindex.ai.
 
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
-import { dirname } from 'node:path';
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { renderHtml } from '@zeroindex-ai/eval-pack/report-html';
 import type { RunReport } from '@zeroindex-ai/eval-pack';
+
+// ─── Brand mark ─────────────────────────────────────────────────────────────
+//
+// Single source of truth for the header brand SVG path geometry:
+// public/brand.svg. Read once at module load and cached. The standalone
+// brand.svg is a labelled image (role="img" aria-label="ZeroIndex"); the
+// header copy is *decorative* — its parent <a class="brand-link"
+// aria-label="ZeroIndex home"> already names the link — so we swap the a11y
+// attributes to aria-hidden="true" and indent the markup to sit inside the
+// header. The transform is byte-exact: it reproduces the previously-inlined
+// block verbatim, so the rendered HTML does not change.
+const repoRoot = dirname(fileURLToPath(import.meta.url));
+
+function loadBrandSvgInline(): string {
+  const raw = readFileSync(join(repoRoot, 'public', 'brand.svg'), 'utf-8').trim();
+  return (
+    raw
+      // Decorative inside an already-labelled link, not a standalone image.
+      .replace('role="img" aria-label="ZeroIndex"', 'aria-hidden="true"')
+      // Match the previously-inlined self-closing style (no space before />).
+      .replace(/ \/>/g, '/>')
+      // Re-indent: <svg>/</svg> at 10 spaces, <path> children at 12.
+      .split('\n')
+      .map((line) => {
+        const t = line.trimStart();
+        const indent = t.startsWith('<path') ? '            ' : '          ';
+        return indent + t;
+      })
+      .join('\n')
+      .trimStart()
+  );
+}
+
+const BRAND_SVG_INLINE = loadBrandSvgInline();
 
 export type Args = {
   in?: string;
@@ -193,11 +229,7 @@ export function wrapWithSiteShell(
     <div class="max-w-6xl mx-auto px-6 md:px-10">
       <div class="py-5 flex items-center justify-between border-b line">
         <a href="https://zeroindex.ai" class="brand-link" aria-label="ZeroIndex home">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="4 0 24 32" width="27" height="36" aria-hidden="true">
-            <path d="M185 -110V830H465V715H310V5H465V-110Z" fill="#3f3f46" transform="translate(1 23.2) scale(0.02 -0.02)"/>
-            <path d="M300 -10Q229 -10 177.0 17.0Q125 44 96.5 93.0Q68 142 68 208V522Q68 588 96.5 637.0Q125 686 177.0 713.0Q229 740 300 740Q371 740 423.0 713.0Q475 686 503.5 637.0Q532 588 532 522V208Q532 142 503.5 93.0Q475 44 423.0 17.0Q371 -10 300 -10ZM186 522V288L410 554Q401 590 372.0 611.0Q343 632 300 632Q247 632 216.5 602.0Q186 572 186 522ZM300 98Q352 98 383.0 128.0Q414 158 414 208V442L190 176Q199 140 228.0 119.0Q257 98 300 98Z" fill="#7c3aed" transform="translate(10 23.2) scale(0.02 -0.02)"/>
-            <path d="M135 -110V5H290V715H135V830H415V-110Z" fill="#3f3f46" transform="translate(19 23.2) scale(0.02 -0.02)"/>
-          </svg>
+          ${BRAND_SVG_INLINE}
           <span class="brand-name">ZeroIndex</span>
         </a>
         <a href="/" class="btn-primary">
