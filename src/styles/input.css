@@ -438,3 +438,21 @@
     border-radius: 4px;
   }
 }
+
+/* ---- Mobile (<= 640px) --------------------------------------------------
+   Report pages are read on phones too. Stack the failure-card labels above
+   their values (the 132px inline-block rail overflows a narrow screen), and
+   clamp the big display type. Unlayered so it overrides @layer components. */
+@media (max-width: 640px) {
+  .report-shell .field-label {
+    display: block;
+    min-width: 0;
+    margin-bottom: 4px;
+  }
+  .report-shell h1 {
+    font-size: 24px;
+  }
+  .report-shell .pass-rate {
+    font-size: 30px;
+  }
+}
