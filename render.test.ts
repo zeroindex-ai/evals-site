@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { escapeHtml, parseArgs, wrapWithSiteShell } from './render.ts';
+import { escapeHtml, parseArgs, redactAnswerText, wrapWithSiteShell } from './render.ts';
 
 // ─── wrapWithSiteShell ──────────────────────────────────────────────────────
 
@@ -132,5 +132,51 @@ describe('parseArgs', () => {
 
   it('rejects unknown flags', () => {
     expect(() => parseArgs(['--bogus', 'x'])).toThrow(/unknown flag/i);
+  });
+
+  it('parses the valueless --redact-answers flag', () => {
+    const args = parseArgs(['--in', 'a.json', '--out', 'b.html', '--project', 'p', '--redact-answers']);
+    expect(args.redactAnswers).toBe(true);
+    // does not consume the following token as a value
+    expect(args.project).toBe('p');
+  });
+
+  it('leaves redactAnswers undefined when the flag is absent', () => {
+    const args = parseArgs(['--in', 'a.json', '--out', 'b.html', '--project', 'p']);
+    expect(args.redactAnswers).toBeUndefined();
+  });
+});
+
+// ─── redactAnswerText ─────────────────────────────────────────────────────────
+
+// Mirrors eval-pack's item shape: the "Answer text:" label div immediately
+// followed by a <div class="text"> holding the (escaped) model output.
+const ITEM_WITH_ANSWER =
+  '<div class="field"><span class="field-label">Question:</span> hi</div>' +
+  '<div class="field"><span class="field-label">Answer text:</span></div>' +
+  '<div class="text">Dear founder, you&#39;re asking about a RAG build. Regards.</div>' +
+  '<div class="field"><span class="field-label">Total ms:</span> <code>1200</code></div>';
+
+describe('redactAnswerText', () => {
+  it('removes the answer body but keeps the label and surrounding fields', () => {
+    const out = redactAnswerText(ITEM_WITH_ANSWER);
+    expect(out).not.toContain('class="text"');
+    expect(out).not.toContain('you&#39;re asking about');
+    expect(out).toContain('Answer text:');
+    expect(out).toContain('withheld (internal)');
+    // unrelated fields survive
+    expect(out).toContain('Question:');
+    expect(out).toContain('Total ms:');
+  });
+
+  it('is idempotent (already-redacted input is unchanged)', () => {
+    const once = redactAnswerText(ITEM_WITH_ANSWER);
+    expect(redactAnswerText(once)).toBe(once);
+  });
+
+  it('only redacts when wrapWithSiteShell is told to', () => {
+    const body = `<body><main class="report-shell">${ITEM_WITH_ANSWER}</main></body>`;
+    expect(wrapWithSiteShell(body, 'intake-zero')).toContain('class="text"');
+    expect(wrapWithSiteShell(body, 'intake-zero', { redactAnswers: true })).not.toContain('class="text"');
   });
 });

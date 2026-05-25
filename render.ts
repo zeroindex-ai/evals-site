@@ -2,7 +2,11 @@
 // zeroindex.ai site shell (sticky header, cream theme, system + JetBrains-Mono
 // typography, max-w-6xl container, footer in matching style).
 //
-// Usage: pnpm render --in <path.json> --out <path.html> --project <name> [--threshold <0..1>]
+// Usage: pnpm render --in <path.json> --out <path.html> --project <name> [--threshold <0..1>] [--redact-answers]
+//
+// --redact-answers strips the raw model output ("Answer text") from the report,
+// keeping pass/fail, categories, timings, and checks. Use it for projects whose
+// output is sensitive — e.g. intake-zero's generated draft emails.
 //
 // To re-skin a previously rendered HTML file (no source JSON), pass --in <path.html>:
 // the file is detected as HTML and rewrapped through wrapWithSiteShell. This is the
@@ -25,15 +29,24 @@ export type Args = {
   out?: string;
   project?: string;
   threshold?: number;
+  redactAnswers?: boolean;
 };
 
 const VALUE_FLAGS = new Set(['--in', '--out', '--project', '--threshold']);
+// Boolean (valueless) flags. --redact-answers strips eval-pack's "Answer text"
+// blocks — for projects whose model output is sensitive (e.g. intake-zero's
+// generated draft emails) while keeping pass/fail, categories, and checks public.
+const BOOLEAN_FLAGS = new Set(['--redact-answers']);
 
 export function parseArgs(argv: string[]): Args {
   const out: Args = {};
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === undefined) continue;
+    if (BOOLEAN_FLAGS.has(a)) {
+      if (a === '--redact-answers') out.redactAnswers = true;
+      continue;
+    }
     if (!VALUE_FLAGS.has(a)) {
       throw new Error(`Unknown flag: ${a}`);
     }
@@ -94,7 +107,27 @@ export function escapeHtml(s: string): string {
  * from the report-shell and the kicker label is stripped, so re-running
  * the wrapper doesn't nest the site chrome.
  */
-export function wrapWithSiteShell(innerHtml: string, projectName: string): string {
+/**
+ * Strip eval-pack's "Answer text" blocks (the raw model output) from a report
+ * body. eval-pack renders the output as a `<div class="text">…</div>` immediately
+ * after the "Answer text:" label; `.text` is used for nothing else and the body
+ * is HTML-escaped (no nested tags), so a non-greedy match to the first </div> is
+ * exact. Used for projects whose output is sensitive — e.g. intake-zero's draft
+ * emails — while keeping pass/fail, categories, timings, and checks visible.
+ * Idempotent: once redacted there's no .text block left to match.
+ */
+export function redactAnswerText(html: string): string {
+  return html.replace(
+    /<div class="field"><span class="field-label">Answer text:<\/span><\/div>\s*<div class="text">[\s\S]*?<\/div>/g,
+    '<div class="field"><span class="field-label">Answer text:</span> <span class="muted">withheld (internal)</span></div>'
+  );
+}
+
+export function wrapWithSiteShell(
+  innerHtml: string,
+  projectName: string,
+  opts: { redactAnswers?: boolean } = {}
+): string {
   // If the file has been wrapped before (one or more times — earlier versions of
   // this function were not idempotent and produced nested shells), the *innermost*
   // <main class="report-shell"> is always the one that contains the actual
@@ -124,6 +157,11 @@ export function wrapWithSiteShell(innerHtml: string, projectName: string): strin
 
   // Drop eval-pack's inner <footer> — site footer credits eval-pack already.
   bodyContent = bodyContent.replace(/<footer[\s\S]*?<\/footer>/gi, '').trim();
+
+  // Optionally strip the raw model output (e.g. intake-zero's draft emails).
+  if (opts.redactAnswers) {
+    bodyContent = redactAnswerText(bodyContent);
+  }
 
   const safeProject = escapeHtml(projectName);
 
@@ -201,7 +239,7 @@ async function main(): Promise<void> {
   const { in: input, out: output, project, threshold } = args;
   if (!input || !output || !project) {
     console.error(
-      'Usage: pnpm render --in <path.json|path.html> --out <path.html> --project <name> [--threshold <0..1>]'
+      'Usage: pnpm render --in <path.json|path.html> --out <path.html> --project <name> [--threshold <0..1>] [--redact-answers]'
     );
     process.exit(2);
     return;
@@ -224,7 +262,7 @@ async function main(): Promise<void> {
     });
   }
 
-  const html = wrapWithSiteShell(inner, project);
+  const html = wrapWithSiteShell(inner, project, { redactAnswers: args.redactAnswers });
   // Create the parent dir so a brand-new project (e.g. its first publish) works
   // without the dir pre-existing.
   await mkdir(dirname(output), { recursive: true });
