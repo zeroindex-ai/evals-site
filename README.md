@@ -13,20 +13,35 @@ No client JS. The pages load Inter + JetBrains Mono from Google Fonts — matchi
 ```
 evals-site/
 ├── public/                       ← served as the site root
-│   ├── index.html
-│   ├── 404.html
-│   ├── brand.svg
+│   ├── index.html                ← landing page (hand-authored)
+│   ├── 404.html                  ← fallback page (hand-authored)
+│   ├── brand.svg                 ← brand mark (read once by render.ts)
+│   ├── favicon.ico
+│   ├── favicon.svg
+│   ├── favicon-48x48.png
+│   ├── favicon-96x96.png
+│   ├── favicon-180x180.png
 │   ├── styles/
-│   │   └── zeroindex.css
+│   │   └── zeroindex.css          ← built artifact (committed; from build:css)
 │   ├── ask-zeroindex/
 │   │   └── latest.html
-│   └── dummy-agent/
+│   ├── contract-lens/
+│   │   └── latest.html
+│   ├── dummy-agent/
+│   │   └── latest.html
+│   ├── intake-zero/
+│   │   └── latest.html
+│   └── repo-xray/
 │       └── latest.html
+├── src/
+│   └── styles/
+│       └── input.css             ← Tailwind v4 source → build:css → zeroindex.css
 ├── render.ts                     ← helper to refresh reports
-├── render.test.ts                ← vitest snapshot + arg-parsing tests
+├── render.test.ts                ← vitest: wrapWithSiteShell + parseArgs + round-trip
+├── class-check.test.ts           ← no-JIT guard: every class has a built rule
 ├── tsconfig.json
 ├── package.json                  ← dev tooling only; not deployed
-└── vercel.json                   ← cleanUrls routing
+└── vercel.json                   ← cleanUrls routing + runs build:css on deploy
 ```
 
 ## URL layout
@@ -60,8 +75,9 @@ git add public/<project>/latest.html && git commit -m "Refresh <project> report"
 ## Develop
 
 ```bash
-pnpm typecheck   # tsc --noEmit, strict + noUncheckedIndexedAccess
-pnpm test        # vitest run — covers wrapWithSiteShell + parseArgs
+pnpm build:css   # tailwindcss src/styles/input.css → public/styles/zeroindex.css (committed artifact)
+pnpm typecheck   # tsc --noEmit, strict + noUncheckedIndexedAccess (covers render + both test files)
+pnpm test        # vitest run — wrapWithSiteShell + parseArgs + round-trip + no-JIT class-check
 pnpm dev         # serve ./public locally (clean-URL routing, mirrors prod)
 ```
 
