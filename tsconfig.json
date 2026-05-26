@@ -15,5 +15,5 @@
     "verbatimModuleSyntax": false,
     "types": ["node"]
   },
-  "include": ["render.ts", "render.test.ts"]
+  "include": ["render.ts", "*.test.ts"]
 }
