@@ -27,8 +27,6 @@ evals-site/
 │   │   └── latest.html
 │   ├── contract-lens/
 │   │   └── latest.html
-│   ├── dummy-agent/
-│   │   └── latest.html
 │   ├── intake-zero/
 │   │   └── latest.html
 │   └── repo-xray/
