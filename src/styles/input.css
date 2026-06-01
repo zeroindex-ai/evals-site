@@ -90,7 +90,7 @@
     opacity: 0.6;
   }
 
-  /* ===== Canonical subdomain chrome — see reference_zeroindex_subdomain_layout memory ===== */
+  /* ===== Canonical subdomain chrome (mirrors the zeroindex-app-layout standard) ===== */
 
   .site-header {
     background: var(--bg);
@@ -290,7 +290,7 @@
     font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
   }
 
-  /* Canonical data-grid style — see reference_zeroindex_admin_grid_style memory.
+  /* Canonical data-grid style.
      Uniform mono cells, left-aligned (numbers too), color carries hierarchy.
      eval-pack emits a bare <table>, so the .card/.table-scroll frame, sticky
      header, and table-layout:fixed+<colgroup> rules don't apply here — those
