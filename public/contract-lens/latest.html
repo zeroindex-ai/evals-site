@@ -47,7 +47,7 @@
       <header>
     <h1>contract-lens eval results</h1>
     <div class="meta">
-      <span>Generated: <code>2026-06-03T18:22:20.628Z</code></span>
+      <span>Generated: <code>2026-06-04T16:51:15.212Z</code></span>
       <span>Judge: <code>none</code></span>
       <span>Items: 8</span>
       <span>Errored: 0</span>
@@ -60,8 +60,8 @@
     <thead><tr><th>Category</th><th>Passed</th><th>Pass rate</th></tr></thead>
     <tbody><tr>
         <td><code>nda</code></td>
-        <td class="num">1/1</td>
-        <td class="num">100%</td>
+        <td class="num">0/1</td>
+        <td class="num">0%</td>
       </tr>
 <tr>
         <td><code>employment</code></td>
@@ -75,8 +75,8 @@
       </tr>
 <tr>
         <td><code>sow</code></td>
-        <td class="num">0/1</td>
-        <td class="num">0%</td>
+        <td class="num">1/1</td>
+        <td class="num">100%</td>
       </tr>
 <tr>
         <td><code>order-form</code></td>
@@ -103,40 +103,39 @@
         <h2>Failures (1)</h2>
         
     <details open>
-      <summary class="fail">✗ <code>fixed-fee-sow</code> · sow · fixed-fee-sow</summary>
+      <summary class="fail">✗ <code>mutual-nda</code> · nda · mutual-nda</summary>
       
     <div class="body">
-      <div class="field"><span class="field-label">Question:</span> fixed-fee-sow</div>
-      <div class="field"><span class="field-label">Category:</span> <code>sow</code></div>
+      <div class="field"><span class="field-label">Question:</span> mutual-nda</div>
+      <div class="field"><span class="field-label">Category:</span> <code>nda</code></div>
       
       
       
-      <div class="field"><span class="field-label">Total ms:</span> <code>22693</code></div>
-      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">document_type: ok</span> </div>
+      <div class="field"><span class="field-label">Total ms:</span> <code>16823</code></div>
+      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag fail">document_type: fail</span> <code>{&quot;missing&quot;:[&quot;non-disclosure&quot;],&quot;actual&quot;:&quot;Mutual NDA&quot;}</code></div>
 <div><span class="tag ok">parties: ok</span> </div>
 <div><span class="tag ok">key_facts: ok</span> </div>
 <div><span class="tag ok">must_not: ok</span> </div>
-<div><span class="tag fail">citations_verified: fail</span> <code>{&quot;offenders&quot;:[{&quot;item&quot;:&quot;party:Phoenix Industries Inc.&quot;,&quot;match_quality&quot;:&quot;wrong-page&quot;}]}</code></div></div></div>
+<div><span class="tag ok">citations_verified: ok</span> </div></div></div>
       <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
       <div class="field"><span class="field-label">Answer text:</span></div>
-      <div class="text">Type: Fixed-Fee Statement of Work
-Summary: This Statement of Work (SOW-2026-014) engages BlueRiver Consulting Group LLC to migrate Phoenix Industries Inc.&#39;s data pipeline from Airflow 1.x to a managed Dagster deployment, including a runbook and operational handoff, for a fixed fee of USD $42,000. It operates under the parties&#39; existing Master Services Agreement dated January 10, 2026.
-Parties: Phoenix Industries Inc. (Client) [wrong-page]; Phoenix Industries Inc., a Texas corporation (&quot;Client&quot;) (Client) [normalized]; BlueRiver Consulting Group LLC (Provider) [normalized]
-SOW Identifier: SOW-2026-014 [exact]
-Effective Date: April 15, 2026 [normalized]
-SOW End Date: September 30, 2026 [exact]
-Total Fixed Fee: USD $42,000 [normalized]
-Payment Schedule: $10,000 on execution; $16,000 on Dagster cutover; $16,000 on operational handoff completion [normalized]
-Invoice Payment Terms: Net 30 days from invoice date [exact]
-Parent Agreement: Master Services Agreement dated January 10, 2026 [normalized]
-Deliverable 1 – Pipeline Migration: Migrate data pipeline from Airflow 1.x to managed Dagster, including DAG conversions and historical-backfill orchestration [normalized]
-Deliverable 2 – Runbook: Written runbook covering operating procedures, on-call escalation paths, and rollback steps [normalized]
-Deliverable 3 – Operational Handoff: Two-week handoff with Provider&#39;s lead engineer pairing with Client&#39;s on-call team [normalized]
-Intellectual Property: All work product is work made for hire and exclusive property of Client; Provider assigns any remainder [normalized]
-Termination Notice Period: 14 days&#39; written notice by either party [normalized]
-Client Convenience Termination Kill Fee: 25% of unbilled fees remaining, plus fees earned through termination date [normalized]
-Governing Law: State of California [exact]
-Liability Cap: Provider&#39;s aggregate liability capped at total fees paid; no indirect, consequential, or punitive damages [normalized]</div>
+      <div class="text">Type: Mutual NDA
+Summary: A mutual non-disclosure agreement between Acme Robotics, Inc. and Globex Partners LLC, entered into as of June 1, 2026, to govern the exchange of confidential information while the parties explore a potential business relationship.
+Parties: Acme Robotics, Inc. (Discloser / Recipient) [normalized]; Globex Partners LLC (Discloser / Recipient) [normalized]
+Effective Date: June 1, 2026 [normalized]
+Agreement Term: 3 years from the Effective Date [exact]
+Confidentiality Survival Period: 5 years after expiration of the agreement term [exact]
+Purpose: Explore a potential business relationship [exact]
+Termination Notice: 30 days&#39; written notice [normalized]
+Aggregate Liability Cap: USD $1,000 per party [normalized]
+Excluded Damages: Indirect, incidental, consequential, or punitive damages [normalized]
+Governing Law: State of Delaware [normalized]
+IP License Granted: None — no license granted to Recipient [normalized]
+Post-Termination Obligation: Return or destroy all Confidential Information [normalized]
+Acme Signatory: Maria Chen, Chief Operating Officer [exact]
+Globex Signatory: Daniel Park, Managing Partner [exact]
+Acme Address: 400 Industrial Way, Wilmington, DE [normalized]
+Globex Address: 22 Atlantic Avenue, Boston, MA [normalized]</div>
     </div>
     </details>
   
@@ -147,46 +146,46 @@ Liability Cap: Provider&#39;s aggregate liability capped at total fees paid; no 
             <table>
               <thead><tr><th>ID</th><th>Category</th><th>Question</th><th>Total ms</th></tr></thead>
               <tbody><tr>
-    <td><code>mutual-nda</code></td>
-    <td>nda</td>
-    <td>mutual-nda</td>
-    <td class="num">36890ms</td>
-  </tr>
-<tr>
     <td><code>employment-agreement</code></td>
     <td>employment</td>
     <td>employment-agreement</td>
-    <td class="num">15071ms</td>
+    <td class="num">17634ms</td>
   </tr>
 <tr>
     <td><code>consulting-msa</code></td>
     <td>msa</td>
     <td>consulting-msa</td>
-    <td class="num">25534ms</td>
+    <td class="num">24297ms</td>
+  </tr>
+<tr>
+    <td><code>fixed-fee-sow</code></td>
+    <td>sow</td>
+    <td>fixed-fee-sow</td>
+    <td class="num">22440ms</td>
   </tr>
 <tr>
     <td><code>saas-order-form</code></td>
     <td>order-form</td>
     <td>saas-order-form</td>
-    <td class="num">20549ms</td>
+    <td class="num">20050ms</td>
   </tr>
 <tr>
     <td><code>contributor-license-agreement</code></td>
     <td>cla</td>
     <td>contributor-license-agreement</td>
-    <td class="num">17700ms</td>
+    <td class="num">17981ms</td>
   </tr>
 <tr>
     <td><code>letter-agreement</code></td>
     <td>letter</td>
     <td>letter-agreement</td>
-    <td class="num">10507ms</td>
+    <td class="num">11262ms</td>
   </tr>
 <tr>
     <td><code>purchase-invoice</code></td>
     <td>non-contract</td>
     <td>purchase-invoice</td>
-    <td class="num">12402ms</td>
+    <td class="num">11845ms</td>
   </tr></tbody>
             </table>
           </div>
