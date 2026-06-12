@@ -47,7 +47,7 @@
       <header>
     <h1>contract-lens eval results</h1>
     <div class="meta">
-      <span>Generated: <code>2026-06-11T17:36:28.147Z</code></span>
+      <span>Generated: <code>2026-06-12T16:42:31.613Z</code></span>
       <span>Judge: <code>none</code></span>
       <span>Items: 8</span>
       <span>Errored: 0</span>
@@ -111,18 +111,31 @@
       
       
       
-      <div class="field"><span class="field-label">Total ms:</span> <code>32706</code></div>
-      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">document_type: ok</span> </div>
-<div><span class="tag fail">parties: fail</span> <code>{&quot;missing&quot;:[&quot;Globex&quot;],&quot;extracted&quot;:&quot;Acme Robotics, Inc.&quot;}</code></div>
-<div><span class="tag fail">key_facts: fail</span> <code>{&quot;missing&quot;:[&quot;delaware&quot;,&quot;$1,000&quot;]}</code></div>
+      <div class="field"><span class="field-label">Total ms:</span> <code>18385</code></div>
+      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag fail">document_type: fail</span> <code>{&quot;missing&quot;:[&quot;non-disclosure&quot;],&quot;actual&quot;:&quot;Mutual NDA&quot;}</code></div>
+<div><span class="tag ok">parties: ok</span> </div>
+<div><span class="tag ok">key_facts: ok</span> </div>
 <div><span class="tag ok">must_not: ok</span> </div>
 <div><span class="tag ok">citations_verified: ok</span> </div></div></div>
       <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
       <div class="field"><span class="field-label">Answer text:</span></div>
-      <div class="text">Type: Mutual Non-Disclosure Agreement
-Summary: A mutual NDA between Acme Robotics, Inc. and Globex Partners LLC, entered into on June 1, 2026, governing the exchange of confidential information as the parties explore a potential business relationship. It sets out obligations, term, ownership, liability limits, and termination procedures for both parties equally.
-Parties: Acme Robotics, Inc. (Discloser / Recipient) [normalized]
-Effective Date: June 1, 2026 [normalized]</div>
+      <div class="text">Type: Mutual NDA
+Summary: A Mutual Non-Disclosure Agreement between Acme Robotics, Inc. and Globex Partners LLC, entered into on June 1, 2026, to govern the exchange of confidential information as the parties explore a potential business relationship.
+Parties: Acme Robotics, Inc. (Discloser / Recipient) [normalized]; Globex Partners LLC (Discloser / Recipient) [normalized]
+Effective Date: June 1, 2026 [normalized]
+Agreement Term: 3 years from the Effective Date [exact]
+Confidentiality Survival Period: 5 years after expiration of the agreement term [exact]
+Purpose: Exploring a potential business relationship [exact]
+Termination Notice: 30 days&#39; written notice [normalized]
+Post-Termination Obligation: Return or destroy all Confidential Information [normalized]
+Governing Law: State of Delaware [normalized]
+Aggregate Liability Cap: USD $1,000 per party [normalized]
+Excluded Damages: Indirect, incidental, consequential, or punitive damages [normalized]
+Standard of Care: No less than reasonable care [normalized]
+Permitted Disclosees: Employees and advisors with need to know, bound by equivalent confidentiality obligations [normalized]
+IP / License Grant: No license granted to Recipient under any patent, copyright, or other IP right [normalized]
+Acme Robotics Signatory: Maria Chen, Chief Operating Officer [exact]
+Globex Partners Signatory: Daniel Park, Managing Partner [exact]</div>
     </div>
     </details>
   
@@ -136,43 +149,43 @@ Effective Date: June 1, 2026 [normalized]</div>
     <td><code>employment-agreement</code></td>
     <td>employment</td>
     <td>employment-agreement</td>
-    <td class="num">15944ms</td>
+    <td class="num">15667ms</td>
   </tr>
 <tr>
     <td><code>consulting-msa</code></td>
     <td>msa</td>
     <td>consulting-msa</td>
-    <td class="num">23174ms</td>
+    <td class="num">23274ms</td>
   </tr>
 <tr>
     <td><code>fixed-fee-sow</code></td>
     <td>sow</td>
     <td>fixed-fee-sow</td>
-    <td class="num">24422ms</td>
+    <td class="num">22265ms</td>
   </tr>
 <tr>
     <td><code>saas-order-form</code></td>
     <td>order-form</td>
     <td>saas-order-form</td>
-    <td class="num">19590ms</td>
+    <td class="num">20397ms</td>
   </tr>
 <tr>
     <td><code>contributor-license-agreement</code></td>
     <td>cla</td>
     <td>contributor-license-agreement</td>
-    <td class="num">17510ms</td>
+    <td class="num">17503ms</td>
   </tr>
 <tr>
     <td><code>letter-agreement</code></td>
     <td>letter</td>
     <td>letter-agreement</td>
-    <td class="num">9707ms</td>
+    <td class="num">9945ms</td>
   </tr>
 <tr>
     <td><code>purchase-invoice</code></td>
     <td>non-contract</td>
     <td>purchase-invoice</td>
-    <td class="num">13894ms</td>
+    <td class="num">12740ms</td>
   </tr></tbody>
             </table>
           </div>
