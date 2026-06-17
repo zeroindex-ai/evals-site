@@ -47,12 +47,12 @@
       <header>
     <h1>contract-lens eval results</h1>
     <div class="meta">
-      <span>Generated: <code>2026-06-16T18:28:20.469Z</code></span>
+      <span>Generated: <code>2026-06-17T16:54:36.754Z</code></span>
       <span>Judge: <code>none</code></span>
       <span>Items: 8</span>
       <span>Errored: 0</span>
     </div>
-    <div class="pass-rate ok">100.0% <small>/ threshold 75%</small></div>
+    <div class="pass-rate ok">87.5% <small>/ threshold 75%</small></div>
   </header>
 
   <h2>By category</h2>
@@ -85,8 +85,8 @@
       </tr>
 <tr>
         <td><code>cla</code></td>
-        <td class="num">1/1</td>
-        <td class="num">100%</td>
+        <td class="num">0/1</td>
+        <td class="num">0%</td>
       </tr>
 <tr>
         <td><code>letter</code></td>
@@ -100,10 +100,46 @@
       </tr></tbody>
   </table>
   
+        <h2>Failures (1)</h2>
+        
+    <details open>
+      <summary class="fail">✗ <code>contributor-license-agreement</code> · cla · contributor-license-agreement</summary>
+      
+    <div class="body">
+      <div class="field"><span class="field-label">Question:</span> contributor-license-agreement</div>
+      <div class="field"><span class="field-label">Category:</span> <code>cla</code></div>
+      
+      
+      
+      <div class="field"><span class="field-label">Total ms:</span> <code>19696</code></div>
+      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">document_type: ok</span> </div>
+<div><span class="tag ok">parties: ok</span> </div>
+<div><span class="tag ok">key_facts: ok</span> </div>
+<div><span class="tag ok">must_not: ok</span> </div>
+<div><span class="tag fail">citations_verified: fail</span> <code>{&quot;offenders&quot;:[{&quot;item&quot;:&quot;Contributions Definition&quot;,&quot;match_quality&quot;:&quot;not-found&quot;}]}</code></div></div></div>
+      <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
+      <div class="field"><span class="field-label">Answer text:</span></div>
+      <div class="text">Type: Individual Contributor License Agreement (CLA)
+Summary: This Contributor License Agreement is between an individual contributor and the Open Beacon Foundation, a Delaware nonprofit. It grants the Foundation perpetual, irrevocable, royalty-free copyright and patent licenses over all contributions the individual submits to Foundation-managed projects.
+Parties: Individual Contributor (unnamed — signature block) (Contributor) [normalized]; Open Beacon Foundation (Foundation) [normalized]
+Agreement Version: Individual Contributor Version 1.0 [exact]
+Effective Date: Date signed by the Contributor [normalized]
+Term: Perpetual; licenses are irrevocable [exact]
+Copyright License Granted: Perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable license to reproduce, prepare derivatives, display, perform, sublicense, and distribute [normalized]
+Patent License Granted: Perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable patent license to make, use, sell, import, and transfer the Project [normalized]
+Scope of Patent License: Applies only to patent claims necessarily infringed by the Contribution alone or in combination with the Project [normalized]
+Contributor Warranties: Contributor warrants legal entitlement to grant licenses, originality of contributions, and disclosure of known third-party restrictions [normalized]
+Contributions Definition: Any original work of authorship, including modifications or additions, intentionally submitted to the Foundation for inclusion in a Foundation project [not-found]
+Warranty Disclaimer: Contributions provided &quot;AS IS&quot; without warranties of any kind, including title, non-infringement, merchantability, or fitness for purpose [exact]
+Governing Law: State of Delaware, excluding conflict of laws principles [normalized]
+Entire Agreement: Supersedes all prior or contemporaneous agreements relating to the Contributions [normalized]
+Covers Future Contributions: Agreement applies to all present and future contributions submitted to the Foundation [normalized]</div>
+    </div>
+    </details>
   
-        <h2>Passing (8)</h2>
+        <h2>Passing (7)</h2>
         <details>
-          <summary class="pass">Show 8 passing items</summary>
+          <summary class="pass">Show 7 passing items</summary>
           <div class="body">
             <table>
               <thead><tr><th>ID</th><th>Category</th><th>Question</th><th>Total ms</th></tr></thead>
@@ -111,49 +147,43 @@
     <td><code>mutual-nda</code></td>
     <td>nda</td>
     <td>mutual-nda</td>
-    <td class="num">38981ms</td>
+    <td class="num">18499ms</td>
   </tr>
 <tr>
     <td><code>employment-agreement</code></td>
     <td>employment</td>
     <td>employment-agreement</td>
-    <td class="num">16580ms</td>
+    <td class="num">17930ms</td>
   </tr>
 <tr>
     <td><code>consulting-msa</code></td>
     <td>msa</td>
     <td>consulting-msa</td>
-    <td class="num">26229ms</td>
+    <td class="num">25035ms</td>
   </tr>
 <tr>
     <td><code>fixed-fee-sow</code></td>
     <td>sow</td>
     <td>fixed-fee-sow</td>
-    <td class="num">21534ms</td>
+    <td class="num">20120ms</td>
   </tr>
 <tr>
     <td><code>saas-order-form</code></td>
     <td>order-form</td>
     <td>saas-order-form</td>
-    <td class="num">20076ms</td>
-  </tr>
-<tr>
-    <td><code>contributor-license-agreement</code></td>
-    <td>cla</td>
-    <td>contributor-license-agreement</td>
-    <td class="num">18361ms</td>
+    <td class="num">20131ms</td>
   </tr>
 <tr>
     <td><code>letter-agreement</code></td>
     <td>letter</td>
     <td>letter-agreement</td>
-    <td class="num">10351ms</td>
+    <td class="num">12101ms</td>
   </tr>
 <tr>
     <td><code>purchase-invoice</code></td>
     <td>non-contract</td>
     <td>purchase-invoice</td>
-    <td class="num">13258ms</td>
+    <td class="num">12190ms</td>
   </tr></tbody>
             </table>
           </div>
