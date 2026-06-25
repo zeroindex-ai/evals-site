@@ -47,21 +47,26 @@
       <header>
     <h1>contract-lens eval results</h1>
     <div class="meta">
-      <span>Generated: <code>2026-06-24T16:14:51.125Z</code></span>
+      <span>Generated: <code>2026-06-25T16:21:18.112Z</code></span>
       <span>Judge: <code>none</code></span>
-      <span>Items: 7</span>
-      <span>Errored: 1</span>
+      <span>Items: 8</span>
+      <span>Errored: 0</span>
     </div>
-    <div class="pass-rate ok">100.0% <small>/ threshold 75%</small></div>
+    <div class="pass-rate ok">87.5% <small>/ threshold 75%</small></div>
   </header>
 
   <h2>By category</h2>
   <table>
     <thead><tr><th>Category</th><th>Passed</th><th>Pass rate</th></tr></thead>
     <tbody><tr>
-        <td><code>employment</code></td>
+        <td><code>nda</code></td>
         <td class="num">1/1</td>
         <td class="num">100%</td>
+      </tr>
+<tr>
+        <td><code>employment</code></td>
+        <td class="num">0/1</td>
+        <td class="num">0%</td>
       </tr>
 <tr>
         <td><code>msa</code></td>
@@ -95,6 +100,43 @@
       </tr></tbody>
   </table>
   
+        <h2>Failures (1)</h2>
+        
+    <details open>
+      <summary class="fail">✗ <code>employment-agreement</code> · employment · employment-agreement</summary>
+      
+    <div class="body">
+      <div class="field"><span class="field-label">Question:</span> employment-agreement</div>
+      <div class="field"><span class="field-label">Category:</span> <code>employment</code></div>
+      
+      
+      
+      <div class="field"><span class="field-label">Total ms:</span> <code>17306</code></div>
+      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">document_type: ok</span> </div>
+<div><span class="tag ok">parties: ok</span> </div>
+<div><span class="tag ok">key_facts: ok</span> </div>
+<div><span class="tag ok">must_not: ok</span> </div>
+<div><span class="tag fail">citations_verified: fail</span> <code>{&quot;offenders&quot;:[{&quot;item&quot;:&quot;Employment Type&quot;,&quot;match_quality&quot;:&quot;wrong-page&quot;}]}</code></div></div></div>
+      <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
+      <div class="field"><span class="field-label">Answer text:</span></div>
+      <div class="text">Type: Employment Agreement
+Summary: This Employment Agreement between Northwind Analytics, Inc. and Jordan Rivera hires Rivera as a Senior Data Engineer on an at-will basis effective July 15, 2026. It sets out compensation, duties, IP assignment, termination terms, and governing law.
+Parties: Northwind Analytics, Inc. (Company) [normalized]; Jordan Rivera (Employee) [normalized]
+Effective Date: July 15, 2026 [exact]
+Job Title: Senior Data Engineer [exact]
+Annual Base Salary: USD $145,000 [normalized]
+Pay Frequency: Semi-monthly installments [normalized]
+Employment Type: At-will [wrong-page]
+Resignation Notice: 2 weeks (requested, not required) [normalized]
+IP / Inventions Assignment: All work product within scope of employment is work-for-hire and exclusively owned by the Company [exact]
+Return of Property on Termination: Employee must return all Company property and Confidential Information [exact]
+Governing Law: State of Washington [normalized]
+Company Signatory: Priya Anand, VP of Engineering [exact]
+Company Jurisdiction: Delaware corporation [exact]
+Company Principal Address: 500 Pike Street, Seattle, Washington [normalized]
+Employee Location: King County, Washington [normalized]</div>
+    </div>
+    </details>
   
         <h2>Passing (7)</h2>
         <details>
@@ -103,58 +145,50 @@
             <table>
               <thead><tr><th>ID</th><th>Category</th><th>Question</th><th>Total ms</th></tr></thead>
               <tbody><tr>
-    <td><code>employment-agreement</code></td>
-    <td>employment</td>
-    <td>employment-agreement</td>
-    <td class="num">15852ms</td>
+    <td><code>mutual-nda</code></td>
+    <td>nda</td>
+    <td>mutual-nda</td>
+    <td class="num">36975ms</td>
   </tr>
 <tr>
     <td><code>consulting-msa</code></td>
     <td>msa</td>
     <td>consulting-msa</td>
-    <td class="num">24363ms</td>
+    <td class="num">24211ms</td>
   </tr>
 <tr>
     <td><code>fixed-fee-sow</code></td>
     <td>sow</td>
     <td>fixed-fee-sow</td>
-    <td class="num">23429ms</td>
+    <td class="num">22507ms</td>
   </tr>
 <tr>
     <td><code>saas-order-form</code></td>
     <td>order-form</td>
     <td>saas-order-form</td>
-    <td class="num">19106ms</td>
+    <td class="num">22657ms</td>
   </tr>
 <tr>
     <td><code>contributor-license-agreement</code></td>
     <td>cla</td>
     <td>contributor-license-agreement</td>
-    <td class="num">19543ms</td>
+    <td class="num">18270ms</td>
   </tr>
 <tr>
     <td><code>letter-agreement</code></td>
     <td>letter</td>
     <td>letter-agreement</td>
-    <td class="num">10666ms</td>
+    <td class="num">11743ms</td>
   </tr>
 <tr>
     <td><code>purchase-invoice</code></td>
     <td>non-contract</td>
     <td>purchase-invoice</td>
-    <td class="num">11374ms</td>
+    <td class="num">14156ms</td>
   </tr></tbody>
             </table>
           </div>
         </details>
-  
-        <h2>Errors (1)</h2>
-        <table>
-          <thead><tr><th>Item</th><th>Error</th></tr></thead>
-          <tbody>
-            <tr><td><code>mutual-nda</code></td><td><code>Request timed out.</code></td></tr>
-          </tbody>
-        </table>
     </main>
 
     <footer class="border-t line py-10 text-sm">
