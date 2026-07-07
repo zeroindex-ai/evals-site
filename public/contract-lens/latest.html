@@ -47,12 +47,12 @@
       <header>
     <h1>contract-lens eval results</h1>
     <div class="meta">
-      <span>Generated: <code>2026-07-06T16:51:45.820Z</code></span>
+      <span>Generated: <code>2026-07-07T16:24:59.345Z</code></span>
       <span>Judge: <code>none</code></span>
       <span>Items: 8</span>
       <span>Errored: 0</span>
     </div>
-    <div class="pass-rate ok">87.5% <small>/ threshold 75%</small></div>
+    <div class="pass-rate ok">100.0% <small>/ threshold 75%</small></div>
   </header>
 
   <h2>By category</h2>
@@ -60,8 +60,8 @@
     <thead><tr><th>Category</th><th>Passed</th><th>Pass rate</th></tr></thead>
     <tbody><tr>
         <td><code>nda</code></td>
-        <td class="num">0/1</td>
-        <td class="num">0%</td>
+        <td class="num">1/1</td>
+        <td class="num">100%</td>
       </tr>
 <tr>
         <td><code>employment</code></td>
@@ -100,92 +100,60 @@
       </tr></tbody>
   </table>
   
-        <h2>Failures (1)</h2>
-        
-    <details open>
-      <summary class="fail">✗ <code>mutual-nda</code> · nda · mutual-nda</summary>
-      
-    <div class="body">
-      <div class="field"><span class="field-label">Question:</span> mutual-nda</div>
-      <div class="field"><span class="field-label">Category:</span> <code>nda</code></div>
-      
-      
-      
-      <div class="field"><span class="field-label">Total ms:</span> <code>40774</code></div>
-      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag fail">document_type: fail</span> <code>{&quot;missing&quot;:[&quot;non-disclosure&quot;],&quot;actual&quot;:&quot;Mutual NDA&quot;}</code></div>
-<div><span class="tag ok">parties: ok</span> </div>
-<div><span class="tag ok">key_facts: ok</span> </div>
-<div><span class="tag ok">must_not: ok</span> </div>
-<div><span class="tag ok">citations_verified: ok</span> </div></div></div>
-      <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
-      <div class="field"><span class="field-label">Answer text:</span></div>
-      <div class="text">Type: Mutual NDA
-Summary: A Mutual Non-Disclosure Agreement between Acme Robotics, Inc. and Globex Partners LLC, entered into as of June 1, 2026, to govern the exchange of confidential information while the parties explore a potential business relationship.
-Parties: Acme Robotics, Inc. (Discloser / Recipient) [normalized]; Globex Partners LLC (Discloser / Recipient) [normalized]
-Effective Date: June 1, 2026 [normalized]
-Agreement Term: 3 years from the Effective Date [exact]
-Confidentiality Survival Period: 5 years after expiration of the agreement term [exact]
-Purpose: Explore a potential business relationship [exact]
-Termination Notice Period: 30 days&#39; written notice [normalized]
-Post-Termination Obligation: Each Recipient must return or destroy all Confidential Information upon termination [normalized]
-Aggregate Liability Cap: USD $1,000 per party [normalized]
-Excluded Damages: Indirect, incidental, consequential, and punitive damages [normalized]
-Governing Law: State of Delaware [normalized]
-Ownership of Confidential Information: Remains with the Discloser; no IP license granted [normalized]
-Standard of Protection: No less than reasonable care [normalized]
-Permitted Disclosees: Employees and advisors with a need to know, bound by equivalent confidentiality obligations [normalized]
-Signatory — Acme Robotics: Maria Chen, Chief Operating Officer [exact]
-Signatory — Globex Partners: Daniel Park, Managing Partner [exact]</div>
-    </div>
-    </details>
   
-        <h2>Passing (7)</h2>
+        <h2>Passing (8)</h2>
         <details>
-          <summary class="pass">Show 7 passing items</summary>
+          <summary class="pass">Show 8 passing items</summary>
           <div class="body">
             <table>
               <thead><tr><th>ID</th><th>Category</th><th>Question</th><th>Total ms</th></tr></thead>
               <tbody><tr>
+    <td><code>mutual-nda</code></td>
+    <td>nda</td>
+    <td>mutual-nda</td>
+    <td class="num">37794ms</td>
+  </tr>
+<tr>
     <td><code>employment-agreement</code></td>
     <td>employment</td>
     <td>employment-agreement</td>
-    <td class="num">14455ms</td>
+    <td class="num">16254ms</td>
   </tr>
 <tr>
     <td><code>consulting-msa</code></td>
     <td>msa</td>
     <td>consulting-msa</td>
-    <td class="num">27029ms</td>
+    <td class="num">24495ms</td>
   </tr>
 <tr>
     <td><code>fixed-fee-sow</code></td>
     <td>sow</td>
     <td>fixed-fee-sow</td>
-    <td class="num">23565ms</td>
+    <td class="num">20537ms</td>
   </tr>
 <tr>
     <td><code>saas-order-form</code></td>
     <td>order-form</td>
     <td>saas-order-form</td>
-    <td class="num">20664ms</td>
+    <td class="num">18561ms</td>
   </tr>
 <tr>
     <td><code>contributor-license-agreement</code></td>
     <td>cla</td>
     <td>contributor-license-agreement</td>
-    <td class="num">18198ms</td>
+    <td class="num">17627ms</td>
   </tr>
 <tr>
     <td><code>letter-agreement</code></td>
     <td>letter</td>
     <td>letter-agreement</td>
-    <td class="num">11673ms</td>
+    <td class="num">9601ms</td>
   </tr>
 <tr>
     <td><code>purchase-invoice</code></td>
     <td>non-contract</td>
     <td>purchase-invoice</td>
-    <td class="num">10668ms</td>
+    <td class="num">13855ms</td>
   </tr></tbody>
             </table>
           </div>
