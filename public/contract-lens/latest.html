@@ -47,12 +47,12 @@
       <header>
     <h1>contract-lens eval results</h1>
     <div class="meta">
-      <span>Generated: <code>2026-07-12T14:52:07.516Z</code></span>
+      <span>Generated: <code>2026-07-13T16:27:29.301Z</code></span>
       <span>Judge: <code>none</code></span>
       <span>Items: 8</span>
       <span>Errored: 0</span>
     </div>
-    <div class="pass-rate ok">100.0% <small>/ threshold 75%</small></div>
+    <div class="pass-rate ok">75.0% <small>/ threshold 75%</small></div>
   </header>
 
   <h2>By category</h2>
@@ -65,8 +65,8 @@
       </tr>
 <tr>
         <td><code>employment</code></td>
-        <td class="num">1/1</td>
-        <td class="num">100%</td>
+        <td class="num">0/1</td>
+        <td class="num">0%</td>
       </tr>
 <tr>
         <td><code>msa</code></td>
@@ -85,8 +85,8 @@
       </tr>
 <tr>
         <td><code>cla</code></td>
-        <td class="num">1/1</td>
-        <td class="num">100%</td>
+        <td class="num">0/1</td>
+        <td class="num">0%</td>
       </tr>
 <tr>
         <td><code>letter</code></td>
@@ -100,10 +100,68 @@
       </tr></tbody>
   </table>
   
+        <h2>Failures (2)</h2>
+        
+    <details open>
+      <summary class="fail">✗ <code>employment-agreement</code> · employment · employment-agreement</summary>
+      
+    <div class="body">
+      <div class="field"><span class="field-label">Question:</span> employment-agreement</div>
+      <div class="field"><span class="field-label">Category:</span> <code>employment</code></div>
+      
+      
+      
+      <div class="field"><span class="field-label">Total ms:</span> <code>11448</code></div>
+      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">document_type: ok</span> </div>
+<div><span class="tag fail">parties: fail</span> <code>{&quot;missing&quot;:[&quot;Rivera&quot;],&quot;extracted&quot;:&quot;Northwind Analytics, Inc.&quot;}</code></div>
+<div><span class="tag fail">key_facts: fail</span> <code>{&quot;missing&quot;:[&quot;$145,000&quot;,&quot;washington&quot;]}</code></div>
+<div><span class="tag ok">must_not: ok</span> </div>
+<div><span class="tag fail">citations_verified: fail</span> <code>{&quot;offenders&quot;:[{&quot;item&quot;:&quot;party:Northwind Analytics, Inc.&quot;,&quot;match_quality&quot;:&quot;wrong-page&quot;},{&quot;item&quot;:&quot;Effective Date&quot;,&quot;match_quality&quot;:&quot;wrong-page&quot;}]}</code></div></div></div>
+      <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
+      <div class="field"><span class="field-label">Answer text:</span></div>
+      <div class="text">Type: Employment Agreement
+Summary: This Employment Agreement engages Jordan Rivera as a Senior Data Engineer at Northwind Analytics, Inc., effective July 15, 2026, on an at-will basis. It sets out compensation, duties, intellectual property assignment, termination terms, and governing law.
+Parties: Northwind Analytics, Inc. (Company) [wrong-page]
+Effective Date: July 15, 2026 [wrong-page]</div>
+    </div>
+    </details>
+
+    <details open>
+      <summary class="fail">✗ <code>contributor-license-agreement</code> · cla · contributor-license-agreement</summary>
+      
+    <div class="body">
+      <div class="field"><span class="field-label">Question:</span> contributor-license-agreement</div>
+      <div class="field"><span class="field-label">Category:</span> <code>cla</code></div>
+      
+      
+      
+      <div class="field"><span class="field-label">Total ms:</span> <code>19184</code></div>
+      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">document_type: ok</span> </div>
+<div><span class="tag ok">parties: ok</span> </div>
+<div><span class="tag ok">key_facts: ok</span> </div>
+<div><span class="tag ok">must_not: ok</span> </div>
+<div><span class="tag fail">citations_verified: fail</span> <code>{&quot;offenders&quot;:[{&quot;item&quot;:&quot;party:Individual Contributor&quot;,&quot;match_quality&quot;:&quot;wrong-page&quot;}]}</code></div></div></div>
+      <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
+      <div class="field"><span class="field-label">Answer text:</span></div>
+      <div class="text">Type: Individual Contributor License Agreement (CLA)
+Summary: This Contributor License Agreement is between an individual contributor and the Open Beacon Foundation, a Delaware nonprofit. It grants the Foundation a perpetual, irrevocable, royalty-free copyright and patent license over all present and future contributions the individual submits to Foundation projects.
+Parties: Individual Contributor (Contributor) [wrong-page];  Open Beacon Foundation (Foundation) [normalized]
+Agreement Version: Individual Contributor Version 1.0 [exact]
+Effective Date: Date signed by the Contributor [normalized]
+Copyright License Scope: Perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable license to reproduce, prepare derivative works, publicly display, perform, sublicense, and distribute [normalized]
+Patent License Scope: Perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable patent license to make, use, sell, import, and transfer the Project [normalized]
+Term: Perpetual and irrevocable [exact]
+Contributor Warranties: Legally entitled to grant licenses; contributions are original creations; third-party restrictions are disclosed [normalized]
+Warranty Disclaimer: Contributions provided &quot;AS IS&quot; with no warranties of any kind [exact]
+Governing Law: State of Delaware (excluding conflict of laws principles) [normalized]
+Scope of Application: All present and future contributions submitted to the Foundation [normalized]
+Entire Agreement: Supersedes all prior or contemporaneous agreements relating to contributions [normalized]</div>
+    </div>
+    </details>
   
-        <h2>Passing (8)</h2>
+        <h2>Passing (6)</h2>
         <details>
-          <summary class="pass">Show 8 passing items</summary>
+          <summary class="pass">Show 6 passing items</summary>
           <div class="body">
             <table>
               <thead><tr><th>ID</th><th>Category</th><th>Question</th><th>Total ms</th></tr></thead>
@@ -111,49 +169,37 @@
     <td><code>mutual-nda</code></td>
     <td>nda</td>
     <td>mutual-nda</td>
-    <td class="num">39622ms</td>
-  </tr>
-<tr>
-    <td><code>employment-agreement</code></td>
-    <td>employment</td>
-    <td>employment-agreement</td>
-    <td class="num">16862ms</td>
+    <td class="num">38445ms</td>
   </tr>
 <tr>
     <td><code>consulting-msa</code></td>
     <td>msa</td>
     <td>consulting-msa</td>
-    <td class="num">23389ms</td>
+    <td class="num">27076ms</td>
   </tr>
 <tr>
     <td><code>fixed-fee-sow</code></td>
     <td>sow</td>
     <td>fixed-fee-sow</td>
-    <td class="num">21625ms</td>
+    <td class="num">47405ms</td>
   </tr>
 <tr>
     <td><code>saas-order-form</code></td>
     <td>order-form</td>
     <td>saas-order-form</td>
-    <td class="num">20154ms</td>
-  </tr>
-<tr>
-    <td><code>contributor-license-agreement</code></td>
-    <td>cla</td>
-    <td>contributor-license-agreement</td>
-    <td class="num">19127ms</td>
+    <td class="num">21453ms</td>
   </tr>
 <tr>
     <td><code>letter-agreement</code></td>
     <td>letter</td>
     <td>letter-agreement</td>
-    <td class="num">10222ms</td>
+    <td class="num">14131ms</td>
   </tr>
 <tr>
     <td><code>purchase-invoice</code></td>
     <td>non-contract</td>
     <td>purchase-invoice</td>
-    <td class="num">14753ms</td>
+    <td class="num">14169ms</td>
   </tr></tbody>
             </table>
           </div>
