@@ -47,7 +47,7 @@
       <header>
     <h1>contract-lens eval results</h1>
     <div class="meta">
-      <span>Generated: <code>2026-07-28T16:02:36.504Z</code></span>
+      <span>Generated: <code>2026-07-29T15:48:34.303Z</code></span>
       <span>Judge: <code>none</code></span>
       <span>Items: 8</span>
       <span>Errored: 0</span>
@@ -70,8 +70,8 @@
       </tr>
 <tr>
         <td><code>msa</code></td>
-        <td class="num">1/1</td>
-        <td class="num">100%</td>
+        <td class="num">0/1</td>
+        <td class="num">0%</td>
       </tr>
 <tr>
         <td><code>sow</code></td>
@@ -85,8 +85,8 @@
       </tr>
 <tr>
         <td><code>cla</code></td>
-        <td class="num">0/1</td>
-        <td class="num">0%</td>
+        <td class="num">1/1</td>
+        <td class="num">100%</td>
       </tr>
 <tr>
         <td><code>letter</code></td>
@@ -103,27 +103,40 @@
         <h2>Failures (1)</h2>
         
     <details open>
-      <summary class="fail">✗ <code>contributor-license-agreement</code> · cla · contributor-license-agreement</summary>
+      <summary class="fail">✗ <code>consulting-msa</code> · msa · consulting-msa</summary>
       
     <div class="body">
-      <div class="field"><span class="field-label">Question:</span> contributor-license-agreement</div>
-      <div class="field"><span class="field-label">Category:</span> <code>cla</code></div>
+      <div class="field"><span class="field-label">Question:</span> consulting-msa</div>
+      <div class="field"><span class="field-label">Category:</span> <code>msa</code></div>
       
       
       
-      <div class="field"><span class="field-label">Total ms:</span> <code>7781</code></div>
+      <div class="field"><span class="field-label">Total ms:</span> <code>27279</code></div>
       <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">document_type: ok</span> </div>
-<div><span class="tag fail">parties: fail</span> <code>{&quot;missing&quot;:[&quot;Open Beacon&quot;],&quot;extracted&quot;:&quot;Individual Contributor&quot;}</code></div>
-<div><span class="tag fail">key_facts: fail</span> <code>{&quot;missing&quot;:[&quot;perpetual&quot;,&quot;delaware&quot;]}</code></div>
+<div><span class="tag ok">parties: ok</span> </div>
+<div><span class="tag ok">key_facts: ok</span> </div>
 <div><span class="tag ok">must_not: ok</span> </div>
-<div><span class="tag fail">citations_verified: fail</span> <code>{&quot;offenders&quot;:[{&quot;item&quot;:&quot;party:Individual Contributor&quot;,&quot;match_quality&quot;:&quot;wrong-page&quot;},{&quot;item&quot;:&quot;Effective Date&quot;,&quot;match_quality&quot;:&quot;wrong-page&quot;}]}</code></div></div></div>
+<div><span class="tag fail">citations_verified: fail</span> <code>{&quot;offenders&quot;:[{&quot;item&quot;:&quot;Governing Law &amp; Jurisdiction&quot;,&quot;match_quality&quot;:&quot;not-found&quot;}]}</code></div></div></div>
       <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
       <div class="field"><span class="field-label">Answer text:</span></div>
-      <div class="text">Type: Individual Contributor License Agreement (CLA)
-Summary: This Contributor License Agreement is between an individual contributor and the Open Beacon Foundation, a Delaware nonprofit. It grants the Foundation a perpetual, royalty-free, irrevocable copyright and patent license over any contributions the individual submits to Foundation-managed projects.
-Parties: Individual Contributor (Contributor) [wrong-page]
-Agreement Version: Individual Contributor Version 1.0 [exact]
-Effective Date: Date signed by the Contributor [wrong-page]</div>
+      <div class="text">Type: Master Services Agreement
+Summary: A consulting services framework agreement between Meridian Health Systems, Inc. (Client) and Atlas Strategic Advisors LLC (Provider), effective January 1, 2026, governing the terms under which Provider will deliver consulting services to Client via individual Statements of Work.
+Parties: Meridian Health Systems, Inc. (Client) [normalized]; Atlas Strategic Advisors LLC (Provider) [normalized]; Dr. Aisha Rahman (Signatory (Chief Information Officer, Meridian Health Systems)) [exact]; Jonathan Kessler (Signatory (Managing Director, Atlas Strategic Advisors)) [exact]
+Effective Date: January 1, 2026 [normalized]
+Initial Term: 12 months from the Effective Date [exact]
+Auto-Renewal: Successive 12-month terms unless either Party gives 60 days&#39; written notice of non-renewal [normalized]
+Billing Rate: USD $250.00 per hour (default, unless SOW specifies otherwise) [normalized]
+Invoicing Schedule: Monthly in arrears [exact]
+Payment Terms: Net 30 days from receipt [normalized]
+Late Payment Interest: 1.5% per month or the maximum rate permitted by applicable law, whichever is lesser [normalized]
+Deliverables Ownership: Client owns all deliverables specifically produced under an SOW, upon payment in full [normalized]
+Provider Tools License: Perpetual, non-exclusive, royalty-free license to Client to use Provider Tools to the extent necessary to use the Deliverables [normalized]
+Termination for Convenience: 30 days&#39; prior written notice by either Party [normalized]
+Termination for Cause – Cure Period: 15 days to cure a material breach after written notice [normalized]
+Confidentiality Survival Period: 5 years after termination [normalized]
+Liability Cap: Total fees paid by Client to Provider in the 12 months preceding the claim (excludes confidentiality/indemnification breaches) [normalized]
+Exclusion of Consequential Damages: Neither party liable for indirect, incidental, special, consequential, or punitive damages [normalized]
+Governing Law &amp; Jurisdiction: State of New York; exclusive jurisdiction in state and federal courts in New York County [not-found]</div>
     </div>
     </details>
   
@@ -137,43 +150,43 @@ Effective Date: Date signed by the Contributor [wrong-page]</div>
     <td><code>mutual-nda</code></td>
     <td>nda</td>
     <td>mutual-nda</td>
-    <td class="num">18218ms</td>
+    <td class="num">17681ms</td>
   </tr>
 <tr>
     <td><code>employment-agreement</code></td>
     <td>employment</td>
     <td>employment-agreement</td>
-    <td class="num">17088ms</td>
-  </tr>
-<tr>
-    <td><code>consulting-msa</code></td>
-    <td>msa</td>
-    <td>consulting-msa</td>
-    <td class="num">24712ms</td>
+    <td class="num">15766ms</td>
   </tr>
 <tr>
     <td><code>fixed-fee-sow</code></td>
     <td>sow</td>
     <td>fixed-fee-sow</td>
-    <td class="num">21058ms</td>
+    <td class="num">22172ms</td>
   </tr>
 <tr>
     <td><code>saas-order-form</code></td>
     <td>order-form</td>
     <td>saas-order-form</td>
-    <td class="num">23947ms</td>
+    <td class="num">17750ms</td>
+  </tr>
+<tr>
+    <td><code>contributor-license-agreement</code></td>
+    <td>cla</td>
+    <td>contributor-license-agreement</td>
+    <td class="num">17433ms</td>
   </tr>
 <tr>
     <td><code>letter-agreement</code></td>
     <td>letter</td>
     <td>letter-agreement</td>
-    <td class="num">11915ms</td>
+    <td class="num">10732ms</td>
   </tr>
 <tr>
     <td><code>purchase-invoice</code></td>
     <td>non-contract</td>
     <td>purchase-invoice</td>
-    <td class="num">22159ms</td>
+    <td class="num">11573ms</td>
   </tr></tbody>
             </table>
           </div>
