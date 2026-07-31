@@ -47,12 +47,12 @@
       <header>
     <h1>contract-lens eval results</h1>
     <div class="meta">
-      <span>Generated: <code>2026-07-30T15:49:16.751Z</code></span>
+      <span>Generated: <code>2026-07-31T16:00:39.014Z</code></span>
       <span>Judge: <code>none</code></span>
       <span>Items: 8</span>
       <span>Errored: 0</span>
     </div>
-    <div class="pass-rate ok">87.5% <small>/ threshold 75%</small></div>
+    <div class="pass-rate ok">100.0% <small>/ threshold 75%</small></div>
   </header>
 
   <h2>By category</h2>
@@ -90,8 +90,8 @@
       </tr>
 <tr>
         <td><code>letter</code></td>
-        <td class="num">0/1</td>
-        <td class="num">0%</td>
+        <td class="num">1/1</td>
+        <td class="num">100%</td>
       </tr>
 <tr>
         <td><code>non-contract</code></td>
@@ -100,41 +100,10 @@
       </tr></tbody>
   </table>
   
-        <h2>Failures (1)</h2>
-        
-    <details open>
-      <summary class="fail">✗ <code>letter-agreement</code> · letter · letter-agreement</summary>
-      
-    <div class="body">
-      <div class="field"><span class="field-label">Question:</span> letter-agreement</div>
-      <div class="field"><span class="field-label">Category:</span> <code>letter</code></div>
-      
-      
-      
-      <div class="field"><span class="field-label">Total ms:</span> <code>10452</code></div>
-      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">document_type: ok</span> </div>
-<div><span class="tag fail">parties: fail</span> <code>{&quot;missing&quot;:[&quot;Tessellate&quot;],&quot;extracted&quot;:&quot;Harbor Lane Advisors&quot;}</code></div>
-<div><span class="tag ok">key_facts: ok</span> </div>
-<div><span class="tag ok">must_not: ok</span> </div>
-<div><span class="tag ok">citations_verified: ok</span> </div></div></div>
-      <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
-      <div class="field"><span class="field-label">Answer text:</span></div>
-      <div class="text">Type: Engagement Letter
-Summary: Harbor Lane Advisors agrees to provide go-to-market advisory services to Tessellate Media, Inc., effective February 10, 2026. The engagement covers market positioning, pricing guidance, and a channel plan at a monthly fee of USD $8,000.
-Parties: Harbor Lane Advisors (Advisor) [exact]
-Effective Date: February 10, 2026 [normalized]
-Monthly Fee: USD $8,000 per month [exact]
-Payment Terms: Payable on receipt [exact]
-Scope of Services: Go-to-market strategy advisory, including market positioning, pricing guidance, and a recommended channel plan [normalized]
-Deliverables: Working sessions and a written summary of recommendations [normalized]
-Advisor Signatory: Nadia Brooks, Principal [exact]
-Billing Frequency: Monthly [exact]</div>
-    </div>
-    </details>
   
-        <h2>Passing (7)</h2>
+        <h2>Passing (8)</h2>
         <details>
-          <summary class="pass">Show 7 passing items</summary>
+          <summary class="pass">Show 8 passing items</summary>
           <div class="body">
             <table>
               <thead><tr><th>ID</th><th>Category</th><th>Question</th><th>Total ms</th></tr></thead>
@@ -142,43 +111,49 @@ Billing Frequency: Monthly [exact]</div>
     <td><code>mutual-nda</code></td>
     <td>nda</td>
     <td>mutual-nda</td>
-    <td class="num">37548ms</td>
+    <td class="num">40926ms</td>
   </tr>
 <tr>
     <td><code>employment-agreement</code></td>
     <td>employment</td>
     <td>employment-agreement</td>
-    <td class="num">18380ms</td>
+    <td class="num">15797ms</td>
   </tr>
 <tr>
     <td><code>consulting-msa</code></td>
     <td>msa</td>
     <td>consulting-msa</td>
-    <td class="num">27375ms</td>
+    <td class="num">25428ms</td>
   </tr>
 <tr>
     <td><code>fixed-fee-sow</code></td>
     <td>sow</td>
     <td>fixed-fee-sow</td>
-    <td class="num">21004ms</td>
+    <td class="num">20950ms</td>
   </tr>
 <tr>
     <td><code>saas-order-form</code></td>
     <td>order-form</td>
     <td>saas-order-form</td>
-    <td class="num">20581ms</td>
+    <td class="num">20401ms</td>
   </tr>
 <tr>
     <td><code>contributor-license-agreement</code></td>
     <td>cla</td>
     <td>contributor-license-agreement</td>
-    <td class="num">24180ms</td>
+    <td class="num">20502ms</td>
+  </tr>
+<tr>
+    <td><code>letter-agreement</code></td>
+    <td>letter</td>
+    <td>letter-agreement</td>
+    <td class="num">11934ms</td>
   </tr>
 <tr>
     <td><code>purchase-invoice</code></td>
     <td>non-contract</td>
     <td>purchase-invoice</td>
-    <td class="num">12067ms</td>
+    <td class="num">19262ms</td>
   </tr></tbody>
             </table>
           </div>
