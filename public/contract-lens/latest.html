@@ -47,12 +47,12 @@
       <header>
     <h1>contract-lens eval results</h1>
     <div class="meta">
-      <span>Generated: <code>2026-08-14T14:47:55.313Z</code></span>
+      <span>Generated: <code>2026-08-15T14:17:35.957Z</code></span>
       <span>Judge: <code>none</code></span>
       <span>Items: 8</span>
       <span>Errored: 0</span>
     </div>
-    <div class="pass-rate ok">87.5% <small>/ threshold 75%</small></div>
+    <div class="pass-rate ok">100.0% <small>/ threshold 75%</small></div>
   </header>
 
   <h2>By category</h2>
@@ -65,8 +65,8 @@
       </tr>
 <tr>
         <td><code>employment</code></td>
-        <td class="num">0/1</td>
-        <td class="num">0%</td>
+        <td class="num">1/1</td>
+        <td class="num">100%</td>
       </tr>
 <tr>
         <td><code>msa</code></td>
@@ -100,35 +100,10 @@
       </tr></tbody>
   </table>
   
-        <h2>Failures (1)</h2>
-        
-    <details open>
-      <summary class="fail">✗ <code>employment-agreement</code> · employment · employment-agreement</summary>
-      
-    <div class="body">
-      <div class="field"><span class="field-label">Question:</span> employment-agreement</div>
-      <div class="field"><span class="field-label">Category:</span> <code>employment</code></div>
-      
-      
-      
-      <div class="field"><span class="field-label">Total ms:</span> <code>11168</code></div>
-      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">document_type: ok</span> </div>
-<div><span class="tag fail">parties: fail</span> <code>{&quot;missing&quot;:[&quot;Rivera&quot;],&quot;extracted&quot;:&quot;Northwind Analytics, Inc.&quot;}</code></div>
-<div><span class="tag fail">key_facts: fail</span> <code>{&quot;missing&quot;:[&quot;$145,000&quot;,&quot;washington&quot;]}</code></div>
-<div><span class="tag ok">must_not: ok</span> </div>
-<div><span class="tag fail">citations_verified: fail</span> <code>{&quot;offenders&quot;:[{&quot;item&quot;:&quot;party:Northwind Analytics, Inc.&quot;,&quot;match_quality&quot;:&quot;wrong-page&quot;}]}</code></div></div></div>
-      <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
-      <div class="field"><span class="field-label">Answer text:</span></div>
-      <div class="text">Type: Employment Agreement
-Summary: This Employment Agreement engages Jordan Rivera as a Senior Data Engineer at Northwind Analytics, Inc., effective July 15, 2026, on an at-will basis. It sets out compensation, duties, IP assignment, termination terms, and governing law.
-Parties: Northwind Analytics, Inc. (Company) [wrong-page]
-Effective Date: July 15, 2026 [exact]</div>
-    </div>
-    </details>
   
-        <h2>Passing (7)</h2>
+        <h2>Passing (8)</h2>
         <details>
-          <summary class="pass">Show 7 passing items</summary>
+          <summary class="pass">Show 8 passing items</summary>
           <div class="body">
             <table>
               <thead><tr><th>ID</th><th>Category</th><th>Question</th><th>Total ms</th></tr></thead>
@@ -136,43 +111,49 @@ Effective Date: July 15, 2026 [exact]</div>
     <td><code>mutual-nda</code></td>
     <td>nda</td>
     <td>mutual-nda</td>
-    <td class="num">41314ms</td>
+    <td class="num">39759ms</td>
+  </tr>
+<tr>
+    <td><code>employment-agreement</code></td>
+    <td>employment</td>
+    <td>employment-agreement</td>
+    <td class="num">15551ms</td>
   </tr>
 <tr>
     <td><code>consulting-msa</code></td>
     <td>msa</td>
     <td>consulting-msa</td>
-    <td class="num">24607ms</td>
+    <td class="num">24127ms</td>
   </tr>
 <tr>
     <td><code>fixed-fee-sow</code></td>
     <td>sow</td>
     <td>fixed-fee-sow</td>
-    <td class="num">26404ms</td>
+    <td class="num">20667ms</td>
   </tr>
 <tr>
     <td><code>saas-order-form</code></td>
     <td>order-form</td>
     <td>saas-order-form</td>
-    <td class="num">23201ms</td>
+    <td class="num">21070ms</td>
   </tr>
 <tr>
     <td><code>contributor-license-agreement</code></td>
     <td>cla</td>
     <td>contributor-license-agreement</td>
-    <td class="num">20426ms</td>
+    <td class="num">18705ms</td>
   </tr>
 <tr>
     <td><code>letter-agreement</code></td>
     <td>letter</td>
     <td>letter-agreement</td>
-    <td class="num">13447ms</td>
+    <td class="num">12208ms</td>
   </tr>
 <tr>
     <td><code>purchase-invoice</code></td>
     <td>non-contract</td>
     <td>purchase-invoice</td>
-    <td class="num">20329ms</td>
+    <td class="num">14133ms</td>
   </tr></tbody>
             </table>
           </div>
