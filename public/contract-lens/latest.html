@@ -47,12 +47,12 @@
       <header>
     <h1>contract-lens eval results</h1>
     <div class="meta">
-      <span>Generated: <code>2026-09-05T05:55:57.298Z</code></span>
+      <span>Generated: <code>2026-09-05T06:10:09.291Z</code></span>
       <span>Judge: <code>none</code></span>
       <span>Items: 8</span>
       <span>Errored: 0</span>
     </div>
-    <div class="pass-rate ok">87.5% <small>/ threshold 75%</small></div>
+    <div class="pass-rate ok">75.0% <small>/ threshold 75%</small></div>
   </header>
 
   <h2>By category</h2>
@@ -70,8 +70,8 @@
       </tr>
 <tr>
         <td><code>msa</code></td>
-        <td class="num">1/1</td>
-        <td class="num">100%</td>
+        <td class="num">0/1</td>
+        <td class="num">0%</td>
       </tr>
 <tr>
         <td><code>sow</code></td>
@@ -100,8 +100,46 @@
       </tr></tbody>
   </table>
   
-        <h2>Failures (1)</h2>
+        <h2>Failures (2)</h2>
         
+    <details open>
+      <summary class="fail">✗ <code>consulting-msa</code> · msa · consulting-msa</summary>
+      
+    <div class="body">
+      <div class="field"><span class="field-label">Question:</span> consulting-msa</div>
+      <div class="field"><span class="field-label">Category:</span> <code>msa</code></div>
+      
+      
+      
+      <div class="field"><span class="field-label">Total ms:</span> <code>23847</code></div>
+      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">document_type: ok</span> </div>
+<div><span class="tag ok">parties: ok</span> </div>
+<div><span class="tag ok">key_facts: ok</span> </div>
+<div><span class="tag ok">must_not: ok</span> </div>
+<div><span class="tag fail">citations_verified: fail</span> <code>{&quot;offenders&quot;:[{&quot;item&quot;:&quot;Governing Law &amp; Jurisdiction&quot;,&quot;match_quality&quot;:&quot;not-found&quot;}]}</code></div></div></div>
+      <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
+      <div class="field"><span class="field-label">Answer text:</span></div>
+      <div class="text">Type: Master Services Agreement
+Summary: A consulting services framework agreement between Meridian Health Systems, Inc. (Client) and Atlas Strategic Advisors LLC (Provider), establishing the terms under which Provider will perform consulting services via individual Statements of Work. It covers fees, intellectual property ownership, confidentiality, termination, and liability.
+Parties: Meridian Health Systems, Inc. (Client) [normalized]; Atlas Strategic Advisors LLC (Provider) [normalized]; Dr. Aisha Rahman (Signatory (Chief Information Officer, Meridian Health Systems)) [exact]; Jonathan Kessler (Signatory (Managing Director, Atlas Strategic Advisors LLC)) [exact]
+Effective Date: January 1, 2026 [normalized]
+Initial Term: 12 months from the Effective Date [exact]
+Auto-Renewal: Successive 12-month terms unless either Party gives 60 days&#39; written notice of non-renewal [normalized]
+Hourly Rate: USD $250.00 per hour (default; SOW may specify otherwise) [normalized]
+Invoicing Frequency: Monthly in arrears [exact]
+Payment Terms: Net 30 days from receipt [normalized]
+Late Payment Interest: 1.5% per month or maximum rate permitted by law, whichever is less [normalized]
+Deliverables Ownership: Client owns all right, title, and interest in deliverables upon payment in full [normalized]
+Provider Tools License: Provider grants Client a perpetual, non-exclusive, royalty-free license to use Provider Tools to the extent necessary to use the Deliverables [normalized]
+Termination for Convenience: Either Party may terminate on 30 days&#39; prior written notice [normalized]
+Termination for Cause: Immediate upon written notice for material breach uncured within 15 days, or insolvency/bankruptcy [normalized]
+Confidentiality Survival Period: 5 years after termination [normalized]
+Liability Cap: Total fees paid by Client to Provider in the 12 months preceding the claim (excluding confidentiality/indemnification breaches) [normalized]
+Consequential Damages Waiver: Neither Party liable for indirect, incidental, special, consequential, or punitive damages [normalized]
+Governing Law &amp; Jurisdiction: State of New York; exclusive jurisdiction in state and federal courts in New York County [not-found]</div>
+    </div>
+    </details>
+
     <details open>
       <summary class="fail">✗ <code>contributor-license-agreement</code> · cla · contributor-license-agreement</summary>
       
@@ -111,34 +149,25 @@
       
       
       
-      <div class="field"><span class="field-label">Total ms:</span> <code>19152</code></div>
+      <div class="field"><span class="field-label">Total ms:</span> <code>8689</code></div>
       <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">document_type: ok</span> </div>
-<div><span class="tag ok">parties: ok</span> </div>
-<div><span class="tag ok">key_facts: ok</span> </div>
+<div><span class="tag fail">parties: fail</span> <code>{&quot;missing&quot;:[&quot;Open Beacon&quot;],&quot;extracted&quot;:&quot;Individual Contributor&quot;}</code></div>
+<div><span class="tag fail">key_facts: fail</span> <code>{&quot;missing&quot;:[&quot;perpetual&quot;,&quot;delaware&quot;]}</code></div>
 <div><span class="tag ok">must_not: ok</span> </div>
-<div><span class="tag fail">citations_verified: fail</span> <code>{&quot;offenders&quot;:[{&quot;item&quot;:&quot;Contribution Definition&quot;,&quot;match_quality&quot;:&quot;not-found&quot;}]}</code></div></div></div>
+<div><span class="tag ok">citations_verified: ok</span> </div></div></div>
       <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
       <div class="field"><span class="field-label">Answer text:</span></div>
       <div class="text">Type: Individual Contributor License Agreement (CLA)
-Summary: This Contributor License Agreement is between an individual Contributor and the Open Beacon Foundation, a Delaware nonprofit, governing the Contributor&#39;s grant of copyright and patent licenses over any original works they submit to the Foundation&#39;s projects. The licenses granted are perpetual, worldwide, royalty-free, and irrevocable.
-Parties: Individual Contributor (unnamed — identified in signature block) (Contributor) [normalized]; Open Beacon Foundation (Foundation) [normalized]
+Summary: This Contributor License Agreement is between an individual contributor and the Open Beacon Foundation, a Delaware nonprofit, under which the contributor grants the Foundation a perpetual, irrevocable, royalty-free copyright and patent license over all present and future contributions submitted to Foundation projects.
+Parties: Individual Contributor (Contributor) [normalized]
 Version: Individual Contributor Version 1.0 [exact]
-Effective Date: Date of Contributor&#39;s signature [normalized]
-Copyright License Scope: Perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable license to reproduce, prepare derivative works, display, perform, sublicense, and distribute Contributions [normalized]
-Patent License Scope: Perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable patent license to make, use, sell, import, and transfer the Project [normalized]
-Term: Perpetual and irrevocable [exact]
-Contribution Definition: Any original work of authorship, including modifications or additions, intentionally submitted to the Foundation for inclusion in a Foundation project [not-found]
-Contributor Warranties: Contributor represents legal entitlement to grant licenses, originality of contributions, and disclosure of known third-party restrictions [normalized]
-Warranty Disclaimer: Contributions provided  [exact]
-Governing Law: State of Delaware, excluding conflict of laws principles [normalized]
-Entire Agreement: Supersedes all prior or contemporaneous agreements relating to the Contributions [normalized]
-Scope of Acceptance: Covers all present and future Contributions submitted to the Foundation [normalized]</div>
+Effective Date: Date signed by the Contributor [normalized]</div>
     </div>
     </details>
   
-        <h2>Passing (7)</h2>
+        <h2>Passing (6)</h2>
         <details>
-          <summary class="pass">Show 7 passing items</summary>
+          <summary class="pass">Show 6 passing items</summary>
           <div class="body">
             <table>
               <thead><tr><th>ID</th><th>Category</th><th>Question</th><th>Total ms</th></tr></thead>
@@ -146,43 +175,37 @@ Scope of Acceptance: Covers all present and future Contributions submitted to th
     <td><code>mutual-nda</code></td>
     <td>nda</td>
     <td>mutual-nda</td>
-    <td class="num">20228ms</td>
+    <td class="num">18276ms</td>
   </tr>
 <tr>
     <td><code>employment-agreement</code></td>
     <td>employment</td>
     <td>employment-agreement</td>
-    <td class="num">18922ms</td>
-  </tr>
-<tr>
-    <td><code>consulting-msa</code></td>
-    <td>msa</td>
-    <td>consulting-msa</td>
-    <td class="num">24199ms</td>
+    <td class="num">16331ms</td>
   </tr>
 <tr>
     <td><code>fixed-fee-sow</code></td>
     <td>sow</td>
     <td>fixed-fee-sow</td>
-    <td class="num">21090ms</td>
+    <td class="num">21820ms</td>
   </tr>
 <tr>
     <td><code>saas-order-form</code></td>
     <td>order-form</td>
     <td>saas-order-form</td>
-    <td class="num">20561ms</td>
+    <td class="num">19037ms</td>
   </tr>
 <tr>
     <td><code>letter-agreement</code></td>
     <td>letter</td>
     <td>letter-agreement</td>
-    <td class="num">10726ms</td>
+    <td class="num">11494ms</td>
   </tr>
 <tr>
     <td><code>purchase-invoice</code></td>
     <td>non-contract</td>
     <td>purchase-invoice</td>
-    <td class="num">12930ms</td>
+    <td class="num">14412ms</td>
   </tr></tbody>
             </table>
           </div>
