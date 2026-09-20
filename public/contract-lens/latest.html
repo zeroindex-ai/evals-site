@@ -47,7 +47,7 @@
       <header>
     <h1>contract-lens eval results</h1>
     <div class="meta">
-      <span>Generated: <code>2026-09-19T17:00:07.766Z</code></span>
+      <span>Generated: <code>2026-09-20T17:15:06.958Z</code></span>
       <span>Judge: <code>none</code></span>
       <span>Items: 8</span>
       <span>Errored: 0</span>
@@ -65,8 +65,8 @@
       </tr>
 <tr>
         <td><code>employment</code></td>
-        <td class="num">1/1</td>
-        <td class="num">100%</td>
+        <td class="num">0/1</td>
+        <td class="num">0%</td>
       </tr>
 <tr>
         <td><code>msa</code></td>
@@ -90,8 +90,8 @@
       </tr>
 <tr>
         <td><code>letter</code></td>
-        <td class="num">0/1</td>
-        <td class="num">0%</td>
+        <td class="num">1/1</td>
+        <td class="num">100%</td>
       </tr>
 <tr>
         <td><code>non-contract</code></td>
@@ -103,31 +103,26 @@
         <h2>Failures (1)</h2>
         
     <details open>
-      <summary class="fail">✗ <code>letter-agreement</code> · letter · letter-agreement</summary>
+      <summary class="fail">✗ <code>employment-agreement</code> · employment · employment-agreement</summary>
       
     <div class="body">
-      <div class="field"><span class="field-label">Question:</span> letter-agreement</div>
-      <div class="field"><span class="field-label">Category:</span> <code>letter</code></div>
+      <div class="field"><span class="field-label">Question:</span> employment-agreement</div>
+      <div class="field"><span class="field-label">Category:</span> <code>employment</code></div>
       
       
       
-      <div class="field"><span class="field-label">Total ms:</span> <code>9702</code></div>
+      <div class="field"><span class="field-label">Total ms:</span> <code>6079</code></div>
       <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">document_type: ok</span> </div>
-<div><span class="tag fail">parties: fail</span> <code>{&quot;missing&quot;:[&quot;Tessellate&quot;],&quot;extracted&quot;:&quot;Harbor Lane Advisors&quot;}</code></div>
-<div><span class="tag ok">key_facts: ok</span> </div>
+<div><span class="tag fail">parties: fail</span> <code>{&quot;missing&quot;:[&quot;Rivera&quot;],&quot;extracted&quot;:&quot;Northwind Analytics, Inc.&quot;}</code></div>
+<div><span class="tag fail">key_facts: fail</span> <code>{&quot;missing&quot;:[&quot;$145,000&quot;,&quot;washington&quot;]}</code></div>
 <div><span class="tag ok">must_not: ok</span> </div>
 <div><span class="tag ok">citations_verified: ok</span> </div></div></div>
       <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
       <div class="field"><span class="field-label">Answer text:</span></div>
-      <div class="text">Type: Advisory Services Engagement Letter
-Summary: Harbor Lane Advisors agrees to provide go-to-market advisory services to Tessellate Media, Inc., covering market positioning, pricing guidance, and a channel plan. The engagement is effective February 10, 2026, at a monthly fee of USD $8,000.
-Parties: Harbor Lane Advisors (Advisor) [exact]
-Effective Date: February 10, 2026 [normalized]
-Monthly Fee: USD $8,000 per month [exact]
-Invoice Payment Terms: Payable on receipt [exact]
-Scope of Services: Go-to-market strategy advisory: market positioning, pricing guidance, and a recommended channel plan [normalized]
-Deliverables: Working sessions and a written summary of recommendations [normalized]
-Advisor Signatory: Nadia Brooks, Principal [exact]</div>
+      <div class="text">Type: Employment Agreement
+Summary: This is an at-will employment agreement between Northwind Analytics, Inc. and Jordan Rivera, hiring Rivera as a Senior Data Engineer effective July 15, 2026. It sets out compensation, duties, IP assignment, termination terms, and governing law.
+Parties: Northwind Analytics, Inc. (Company) [normalized]
+Effective Date: July 15, 2026 [exact]</div>
     </div>
     </details>
   
@@ -141,43 +136,43 @@ Advisor Signatory: Nadia Brooks, Principal [exact]</div>
     <td><code>mutual-nda</code></td>
     <td>nda</td>
     <td>mutual-nda</td>
-    <td class="num">18989ms</td>
-  </tr>
-<tr>
-    <td><code>employment-agreement</code></td>
-    <td>employment</td>
-    <td>employment-agreement</td>
-    <td class="num">15838ms</td>
+    <td class="num">34686ms</td>
   </tr>
 <tr>
     <td><code>consulting-msa</code></td>
     <td>msa</td>
     <td>consulting-msa</td>
-    <td class="num">27458ms</td>
+    <td class="num">24896ms</td>
   </tr>
 <tr>
     <td><code>fixed-fee-sow</code></td>
     <td>sow</td>
     <td>fixed-fee-sow</td>
-    <td class="num">21155ms</td>
+    <td class="num">21946ms</td>
   </tr>
 <tr>
     <td><code>saas-order-form</code></td>
     <td>order-form</td>
     <td>saas-order-form</td>
-    <td class="num">18980ms</td>
+    <td class="num">20989ms</td>
   </tr>
 <tr>
     <td><code>contributor-license-agreement</code></td>
     <td>cla</td>
     <td>contributor-license-agreement</td>
-    <td class="num">17327ms</td>
+    <td class="num">17520ms</td>
+  </tr>
+<tr>
+    <td><code>letter-agreement</code></td>
+    <td>letter</td>
+    <td>letter-agreement</td>
+    <td class="num">10940ms</td>
   </tr>
 <tr>
     <td><code>purchase-invoice</code></td>
     <td>non-contract</td>
     <td>purchase-invoice</td>
-    <td class="num">13137ms</td>
+    <td class="num">13410ms</td>
   </tr></tbody>
             </table>
           </div>
