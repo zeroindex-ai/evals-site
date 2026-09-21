@@ -47,7 +47,7 @@
       <header>
     <h1>contract-lens eval results</h1>
     <div class="meta">
-      <span>Generated: <code>2026-09-20T17:15:06.958Z</code></span>
+      <span>Generated: <code>2026-09-21T19:02:48.754Z</code></span>
       <span>Judge: <code>none</code></span>
       <span>Items: 8</span>
       <span>Errored: 0</span>
@@ -60,13 +60,13 @@
     <thead><tr><th>Category</th><th>Passed</th><th>Pass rate</th></tr></thead>
     <tbody><tr>
         <td><code>nda</code></td>
-        <td class="num">1/1</td>
-        <td class="num">100%</td>
+        <td class="num">0/1</td>
+        <td class="num">0%</td>
       </tr>
 <tr>
         <td><code>employment</code></td>
-        <td class="num">0/1</td>
-        <td class="num">0%</td>
+        <td class="num">1/1</td>
+        <td class="num">100%</td>
       </tr>
 <tr>
         <td><code>msa</code></td>
@@ -103,26 +103,26 @@
         <h2>Failures (1)</h2>
         
     <details open>
-      <summary class="fail">✗ <code>employment-agreement</code> · employment · employment-agreement</summary>
+      <summary class="fail">✗ <code>mutual-nda</code> · nda · mutual-nda</summary>
       
     <div class="body">
-      <div class="field"><span class="field-label">Question:</span> employment-agreement</div>
-      <div class="field"><span class="field-label">Category:</span> <code>employment</code></div>
+      <div class="field"><span class="field-label">Question:</span> mutual-nda</div>
+      <div class="field"><span class="field-label">Category:</span> <code>nda</code></div>
       
       
       
-      <div class="field"><span class="field-label">Total ms:</span> <code>6079</code></div>
-      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag ok">document_type: ok</span> </div>
-<div><span class="tag fail">parties: fail</span> <code>{&quot;missing&quot;:[&quot;Rivera&quot;],&quot;extracted&quot;:&quot;Northwind Analytics, Inc.&quot;}</code></div>
-<div><span class="tag fail">key_facts: fail</span> <code>{&quot;missing&quot;:[&quot;$145,000&quot;,&quot;washington&quot;]}</code></div>
+      <div class="field"><span class="field-label">Total ms:</span> <code>29325</code></div>
+      <div class="field"><span class="field-label">Checks:</span><div style="margin-top:6px"><div><span class="tag fail">document_type: fail</span> <code>{&quot;missing&quot;:[&quot;non-disclosure&quot;],&quot;actual&quot;:&quot;Mutual NDA&quot;}</code></div>
+<div><span class="tag fail">parties: fail</span> <code>{&quot;missing&quot;:[&quot;Globex&quot;],&quot;extracted&quot;:&quot;Acme Robotics, Inc.&quot;}</code></div>
+<div><span class="tag fail">key_facts: fail</span> <code>{&quot;missing&quot;:[&quot;delaware&quot;,&quot;$1,000&quot;]}</code></div>
 <div><span class="tag ok">must_not: ok</span> </div>
 <div><span class="tag ok">citations_verified: ok</span> </div></div></div>
       <div class="field"><span class="field-label">Judge:</span> <span class="tag muted">none</span></div>
       <div class="field"><span class="field-label">Answer text:</span></div>
-      <div class="text">Type: Employment Agreement
-Summary: This is an at-will employment agreement between Northwind Analytics, Inc. and Jordan Rivera, hiring Rivera as a Senior Data Engineer effective July 15, 2026. It sets out compensation, duties, IP assignment, termination terms, and governing law.
-Parties: Northwind Analytics, Inc. (Company) [normalized]
-Effective Date: July 15, 2026 [exact]</div>
+      <div class="text">Type: Mutual NDA
+Summary: A mutual non-disclosure agreement between Acme Robotics, Inc. and Globex Partners LLC to facilitate the exchange of confidential information while exploring a potential business relationship. It sets out each party&#39;s obligations to protect the other&#39;s confidential information, with a three-year term and a five-year post-expiration survival period.
+Parties: Acme Robotics, Inc. (Discloser / Recipient) [normalized]
+Effective Date: June 1, 2026 [normalized]</div>
     </div>
     </details>
   
@@ -133,46 +133,46 @@ Effective Date: July 15, 2026 [exact]</div>
             <table>
               <thead><tr><th>ID</th><th>Category</th><th>Question</th><th>Total ms</th></tr></thead>
               <tbody><tr>
-    <td><code>mutual-nda</code></td>
-    <td>nda</td>
-    <td>mutual-nda</td>
-    <td class="num">34686ms</td>
+    <td><code>employment-agreement</code></td>
+    <td>employment</td>
+    <td>employment-agreement</td>
+    <td class="num">21339ms</td>
   </tr>
 <tr>
     <td><code>consulting-msa</code></td>
     <td>msa</td>
     <td>consulting-msa</td>
-    <td class="num">24896ms</td>
+    <td class="num">27326ms</td>
   </tr>
 <tr>
     <td><code>fixed-fee-sow</code></td>
     <td>sow</td>
     <td>fixed-fee-sow</td>
-    <td class="num">21946ms</td>
+    <td class="num">24644ms</td>
   </tr>
 <tr>
     <td><code>saas-order-form</code></td>
     <td>order-form</td>
     <td>saas-order-form</td>
-    <td class="num">20989ms</td>
+    <td class="num">21935ms</td>
   </tr>
 <tr>
     <td><code>contributor-license-agreement</code></td>
     <td>cla</td>
     <td>contributor-license-agreement</td>
-    <td class="num">17520ms</td>
+    <td class="num">23939ms</td>
   </tr>
 <tr>
     <td><code>letter-agreement</code></td>
     <td>letter</td>
     <td>letter-agreement</td>
-    <td class="num">10940ms</td>
+    <td class="num">11758ms</td>
   </tr>
 <tr>
     <td><code>purchase-invoice</code></td>
     <td>non-contract</td>
     <td>purchase-invoice</td>
-    <td class="num">13410ms</td>
+    <td class="num">16436ms</td>
   </tr></tbody>
             </table>
           </div>
