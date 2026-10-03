@@ -1,5 +1,8 @@
 node_modules/
 .vercel
+.env
+.env.*
+!.env.example
 .DS_Store
 
 # downloaded CI artifacts — keep them out of git; render to HTML then discard
